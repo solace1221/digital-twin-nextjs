@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Twin Next.js MCP Project
 
-## Getting Started
+A Next.js application with Model Context Protocol (MCP) integration for AI-powered digital twin functionality.
 
-First, run the development server:
+## 🚀 Project Overview
 
+This project combines Next.js with MCP (Model Context Protocol) to create an interactive digital twin application that can:
+- Provide intelligent responses about professional background
+- Handle real-time chat interactions
+- Integrate with RAG (Retrieval-Augmented Generation) systems
+- Serve as a personal AI assistant
+
+## 🛠 Technology Stack
+
+- **Frontend**: Next.js 15.5.3 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Development**: Turbopack for faster builds
+- **Linting**: ESLint
+- **AI Integration**: Groq API, Upstash Vector
+- **Protocol**: Model Context Protocol (MCP)
+
+## 🔧 Setup Instructions
+
+### Prerequisites
+- Node.js 18+ (Current: v22.18.0)
+- npm or yarn
+- Git
+
+### Installation
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd digital-twin-nextjs
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your API keys
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
+```env
+# Groq API
+GROQ_API_KEY=your_groq_api_key
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Upstash Vector
+UPSTASH_VECTOR_REST_URL=your_upstash_url
+UPSTASH_VECTOR_REST_TOKEN=your_upstash_token
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Next.js
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
 
-## Learn More
+## 🚀 Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build for production with Turbopack
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
