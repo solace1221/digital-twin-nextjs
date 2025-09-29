@@ -1,0 +1,210 @@
+{
+  "personal": {
+    "name": "Lovely Pearl B. Alan",
+    "title": "BSIT Student – Web & App Development | Aspiring Data Analyst",
+    "location": "Tuguegarao City, Cagayan, Philippines",
+    "summary": "Motivated and detail-oriented BSIT student majoring in Web and App Development at St. Paul University Philippines. Strong foundations in database management, programming, and front-end development. Recognized as a President's Lister with proven leadership experience through active involvement in student organizations. Passionate about leveraging data and technology to solve real-world challenges.",
+    "elevator_pitch": "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I aim to grow into a Data Analyst role where I can apply my skills in data-driven decision-making.",
+    "contact": {
+      "email": "lovelyalan@spup.edu.ph",
+      "linkedin": "https://www.linkedin.com/in/lovely-pearl-alan-62bbb2311/",
+      "github": "https://github.com/solace1221",
+      "portfolio": "to be developed"
+    }
+  },
+  "salary_location": {
+    "current_salary": "N/A (Student, Internship/Entry-level opportunities preferred)",
+    "salary_expectations": "Based on role and learning opportunities; open to internship/entry-level packages",
+    "location_preferences": ["Tuguegarao City", "Remote", "Hybrid"],
+    "relocation_willing": true,
+    "remote_experience": "Familiar with online collaboration through academic and organizational projects",
+    "travel_availability": "Available for academic/professional events and training",
+    "work_authorization": "Philippine Citizen"
+  },
+  "experience": [
+    {
+      "organization": "Junior Philippine Computer Society – SPUP Chapter",
+      "title": "President",
+      "duration": "AY 2025–2026",
+      "team_structure": "Student organization with cross-department members",
+      "achievements_star": [
+        {
+          "situation": "Need to promote tech literacy and engagement among IT students",
+          "task": "Lead initiatives and events for JPCS",
+          "action": "Spearheaded tech-related events and workshops, promoted digital literacy",
+          "result": "Increased student participation and strengthened JPCS community presence"
+        }
+      ],
+      "skills_used": ["Leadership", "Event Organization", "Collaboration"]
+    },
+    {
+      "organization": "Paulinian Student Government – Uniwide Council",
+      "title": "Executive Secretary",
+      "duration": "AY 2025–2026",
+      "achievements_star": [
+        {
+          "situation": "Need for accurate and timely documentation of PSG activities",
+          "task": "Ensure effective administrative support",
+          "action": "Managed meeting records, correspondence, and coordination with councils",
+          "result": "Improved organizational efficiency and accountability"
+        }
+      ],
+      "skills_used": ["Documentation", "Administration", "Cross-functional teamwork"]
+    }
+  ],
+  "skills": {
+    "technical": {
+      "programming_languages": [
+        {"language": "C++", "proficiency": "Intermediate", "certification": "Cisco Essentials"},
+        {"language": "JavaScript", "proficiency": "Intermediate", "certification": "Cisco Essentials"}
+      ],
+      "web_development": ["HTML", "CSS", "JavaScript", "Laravel", "Front-End Development"],
+      "data_systems": ["Database Management System (DBMS)", "File Management", "Data Control"],
+      "tools": ["GitHub", "Cybersecurity Fundamentals", "Interaction Design"]
+    },
+    "soft_skills": ["Leadership & Teamwork", "Communication & Collaboration", "Adaptability & Problem-Solving", "Organizational & Analytical Thinking"],
+    "certifications": [
+      "C++ Essentials 1 – Cisco (Aug 2025)",
+      "JavaScript Essentials 1 – Cisco (Aug 2025)"
+    ]
+  },
+  "education": {
+    "university": "St. Paul University Philippines",
+    "degree": "Bachelor of Science in Information Technology – Major in Web and App Development",
+    "graduation_year": 2026,
+    "honors": "President's Lister",
+    "relevant_coursework": ["Database Management", "Web Development", "Programming Fundamentals", "File & Data Management"]
+  },
+  "projects_portfolio": [
+    {
+      "name": "Capstone: Good Moral Application and Monitoring System with Decision Support",
+      "description": "A Laravel- and SQL-based system for St. Paul University Philippines, designed for the Office of Student Affairs. Supports multiple roles, decision support, and violations tracking.",
+      "technologies": ["Laravel", "SQL", "Responsive Web Design"],
+      "impact": "Streamlined clearance and monitoring processes for students and administrators",
+      "github_url": "https://github.com/solace1221",
+      "live_demo": "to be deployed"
+    }
+  ],
+  "career_goals": {
+    "short_term": "Secure an internship or entry-level role in data analytics or software development",
+    "long_term": "Pursue a career as a Data Analyst or Software Engineer specializing in web and data systems",
+    "learning_focus": ["Data Analytics", "Web Application Development", "Database Optimization"],
+    "industries_interested": ["IT Services", "Education Technology", "Business Analytics"]
+  },
+  "interview_prep": {
+    "common_questions": {
+      "behavioral": [
+        "Tell me about a time you had to balance academics and leadership roles",
+        "Describe how you handled organizing an event with limited resources",
+        "How do you adapt when faced with new technical challenges?"
+      ],
+      "technical": [
+        "Explain how you design a database for a small application",
+        "Walk me through a project where you used Laravel or front-end development",
+        "What steps would you take to debug a web application issue?"
+      ],
+      "situational": [
+        "A team member misses a deadline — how do you handle it?",
+        "You're asked to use a new tool you're unfamiliar with. How would you approach learning it?",
+        "How would you handle conflicting priorities between academics and internship tasks?"
+      ],
+      "company_research": {
+        "research_areas": ["Company culture and values", "Role expectations", "Opportunities for growth and training"],
+        "preparation_questions": ["What skills are most valued for this role?", "How does your company support student interns?", "What projects could I contribute to immediately?"]
+      }
+    },
+    "weakness_mitigation": [
+      {
+        "weakness": "Limited industry experience",
+        "mitigation": "Actively gaining hands-on practice through academic projects, certifications, and leadership experiences"
+      }
+    ]
+  },
+  "professional_development": {
+    "recent_learning": ["C++ Essentials Certification", "JavaScript Essentials Certification", "Laravel Development Projects"],
+    "conferences_attended": ["School-led IT seminars and JPCS-organized workshops"],
+    "open_source": ["Actively learning GitHub for project hosting and collaboration"]
+  },
+  "content_chunks": [
+    {
+      "id": "personal_overview",
+      "title": "Personal Overview",
+      "type": "personal",
+      "content": "I'm Lovely Pearl B. Alan, a BSIT student majoring in Web & App Development at St. Paul University Philippines. I'm an aspiring Data Analyst with strong foundations in database management, programming, and front-end development. I'm recognized as a President's Lister with proven leadership experience through active involvement in student organizations.",
+      "metadata": {
+        "category": "personal",
+        "tags": ["overview", "student", "data_analyst", "president_lister"]
+      }
+    },
+    {
+      "id": "technical_skills",
+      "title": "Technical Skills",
+      "type": "skills",
+      "content": "My programming skills include C++ (Intermediate with Cisco certification) and JavaScript (Intermediate with Cisco certification). In web development, I work with HTML, CSS, JavaScript, Laravel, and Front-End Development. I have experience with Database Management Systems (DBMS), File Management, and Data Control. I use tools like GitHub, and have knowledge in Cybersecurity Fundamentals and Interaction Design.",
+      "metadata": {
+        "category": "technical",
+        "tags": ["programming", "web_development", "databases", "tools"]
+      }
+    },
+    {
+      "id": "education",
+      "title": "Education",
+      "type": "education",
+      "content": "I'm currently pursuing a Bachelor of Science in Information Technology with a major in Web and App Development at St. Paul University Philippines, expected to graduate in 2026. I'm honored to be a President's Lister. My relevant coursework includes Database Management, Web Development, Programming Fundamentals, and File & Data Management.",
+      "metadata": {
+        "category": "education",
+        "tags": ["bsit", "web_development", "president_lister", "graduation_2026"]
+      }
+    },
+    {
+      "id": "leadership_experience",
+      "title": "Leadership Experience",
+      "type": "experience",
+      "content": "I serve as President of the Junior Philippine Computer Society (JPCS) at St. Paul University Philippines from 2024-2025, where I organize IT-related events and workshops. I also hold the position of Executive Secretary for the Paulinian Student Government (2024-2025), managing documentation and supporting cross-functional teamwork.",
+      "metadata": {
+        "category": "leadership",
+        "tags": ["president", "jpcs", "student_government", "leadership"]
+      }
+    },
+    {
+      "id": "capstone_project",
+      "title": "Capstone Project",
+      "type": "projects",
+      "content": "My main project is the 'Good Moral Application and Monitoring System with Decision Support' - a comprehensive web-based system designed to streamline student conduct monitoring and application processes. The system automates the good moral certificate application process, tracks student behavior patterns, and provides decision support for administrative staff. It's built using Laravel framework with SQL database, demonstrating my skills in full-stack web development and database management.",
+      "metadata": {
+        "category": "projects",
+        "tags": ["capstone", "laravel", "database", "web_system", "decision_support"]
+      }
+    },
+    {
+      "id": "career_goals",
+      "title": "Career Goals",
+      "type": "career",
+      "content": "My short-term goal is to secure an internship in data analytics to gain hands-on experience and build my professional network. Long-term, I aspire to become a Data Analyst or Software Engineer, using my technical skills and analytical thinking to contribute to data-driven decision making in organizations. I'm passionate about leveraging data and technology to solve real-world challenges.",
+      "metadata": {
+        "category": "career",
+        "tags": ["data_analyst", "software_engineer", "internship", "goals"]
+      }
+    },
+    {
+      "id": "soft_skills",
+      "title": "Soft Skills & Strengths",
+      "type": "skills",
+      "content": "I excel in Leadership & Teamwork, Communication & Collaboration, Adaptability & Problem-Solving, and Organizational & Analytical Thinking. My experience as a student leader has strengthened my ability to work cross-functionally, manage documentation, and organize events. I'm detail-oriented and motivated, with a passion for continuous learning and professional development.",
+      "metadata": {
+        "category": "soft_skills",
+        "tags": ["leadership", "teamwork", "communication", "problem_solving"]
+      }
+    },
+    {
+      "id": "certifications",
+      "title": "Certifications & Achievements",
+      "type": "achievements",
+      "content": "I hold C++ Essentials 1 certification from Cisco (August 2025) and JavaScript Essentials 1 certification from Cisco (August 2025). I'm recognized as a President's Lister for academic excellence. I'm actively involved in professional development through school-led IT seminars and JPCS-organized workshops.",
+      "metadata": {
+        "category": "achievements",
+        "tags": ["cisco_certification", "president_lister", "professional_development"]
+      }
+    }
+  ]
+}
