@@ -1,8 +1,8 @@
 // RAG Streaming API Route
 import { NextRequest, NextResponse } from 'next/server';
-import { RAGSystem } from '@/lib/rag-system';
+import { UpstashRAGSystem } from '@/lib/upstash-rag-system';
 
-const ragSystem = new RAGSystem();
+const ragSystem = new UpstashRAGSystem();
 
 export async function POST(request: NextRequest) {
   try {

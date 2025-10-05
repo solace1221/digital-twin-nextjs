@@ -1,0 +1,18 @@
+{
+    "chat.mcp.serverSampling": {
+        "digital-twin-nextjs/.vscode/mcp.json: digital-twin-mcp": {
+            "allowedModels": [
+                "copilot/gpt-4.1",
+                "copilot/claude-sonnet-4",
+                "copilot/claude-sonnet-4.5"
+            ]
+        }
+    },
+    "python.defaultInterpreterPath": "C:\\Python312\\python.exe",
+    "python.analysis.extraPaths": [
+        "C:\\Users\\lovel\\AppData\\Roaming\\Python\\Python312\\site-packages"
+    ],
+    "python.autoComplete.extraPaths": [
+        "C:\\Users\\lovel\\AppData\\Roaming\\Python\\Python312\\site-packages"
+    ]
+}

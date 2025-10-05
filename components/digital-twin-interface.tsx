@@ -102,7 +102,16 @@ export default function DigitalTwinInterface() {
       const data = await res.json();
 
       if (!res.ok) {
+        // Handle specific error cases more gracefully
+        if (res.status === 503) {
+          throw new Error(data.message || 'Service temporarily unavailable. Please try using Local RAG mode or check your credentials.');
+        }
         throw new Error(data.message || 'Failed to process query');
+      }
+
+      // Check if the response indicates an error even with 200 status
+      if (data.error || data.success === false) {
+        throw new Error(data.message || data.error || 'Query processing failed');
       }
 
       setResponse(data);

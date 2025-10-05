@@ -170,24 +170,33 @@ export class LocalRAGSystem {
         .map((result, index) => `[Context ${index + 1}]: ${result.content}`)
         .join('\n\n');
 
-      // Create the prompt
-      const prompt = `Based on the following context about my professional profile, please answer the question.
+      // Create the prompt for first-person responses as Lovely
+      const prompt = `You are Lovely Pearl B. Alan, a BSIT student and aspiring Data Analyst. Answer this question in first person, as if you are speaking directly to the person asking.
 
-Context:
+My Professional Context:
 ${context}
 
 Question: ${query}
 
-Please provide a comprehensive and accurate answer based on the context provided. If the context doesn't contain enough information to fully answer the question, please indicate what additional information might be needed.
+Guidelines for your response:
+- Professional tone, no emojis
+- 2-3 SHORT sentences or bullet points MAX
+- Use first person (I, my, me)
+- Focus on key qualifications
+- Direct and impressive
 
-Answer:`;
+Answer professionally as Lovely:`;
 
       // Generate response using Groq
       const response = await this.groq.generateResponse([
+        { 
+          role: 'system', 
+          content: 'You are Lovely Pearl B. Alan. Provide professional, concise responses. No emojis. Maximum 3-4 sentences or bullet points. Be direct and impressive. Complete your thoughts fully.'
+        },
         { role: 'user', content: prompt }
       ], {
         temperature: options.temperature || 0.7,
-        maxTokens: options.maxTokens || 1000
+        maxTokens: options.maxTokens || 150
       });
 
       return response;

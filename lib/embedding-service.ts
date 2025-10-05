@@ -25,7 +25,7 @@ export class EmbeddingService {
     try {
       // For now, we'll use a simple hash-based approach
       // In production, replace this with actual embedding models
-      return this.simpleTextEmbedding(text, options.dimensions || 384);
+      return this.simpleTextEmbedding(text, options.dimensions || 1024);
     } catch (error) {
       console.error('Error generating embedding:', error);
       throw new Error(`Embedding generation error: ${error instanceof Error ? error.message : 'Unknown error'}`);

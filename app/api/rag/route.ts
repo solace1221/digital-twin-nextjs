@@ -1,8 +1,8 @@
 // RAG Query API Route
 import { NextRequest, NextResponse } from 'next/server';
-import { RAGSystem } from '@/lib/rag-system';
+import { UpstashRAGSystem } from '@/lib/upstash-rag-system';
 
-const ragSystem = new RAGSystem();
+const ragSystem = new UpstashRAGSystem();
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,9 +18,31 @@ export async function POST(request: NextRequest) {
 
     console.log(`Processing RAG query: ${query}`);
 
-    // Initialize RAG system if not already done
+    // Try to initialize RAG system if not already done
+    let ragSystemReady = false;
     if (!ragSystem['isInitialized']) {
-      await ragSystem.initialize();
+      try {
+        await ragSystem.initialize();
+        ragSystemReady = true;
+      } catch (initError) {
+        console.error('RAG system initialization failed:', initError);
+        ragSystemReady = false;
+      }
+    } else {
+      ragSystemReady = true;
+    }
+
+    // Check if RAG system is ready
+    if (!ragSystemReady) {
+      return NextResponse.json(
+        {
+          error: 'RAG system not available',
+          message: 'Digital twin data cannot be accessed due to database connection issues. Please check Upstash Vector credentials.',
+          query,
+          timestamp: new Date().toISOString()
+        },
+        { status: 503 }
+      );
     }
 
     // Execute the query
@@ -51,6 +73,33 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    // Try to initialize RAG system if not already done
+    let ragSystemReady = false;
+    if (!ragSystem['isInitialized']) {
+      try {
+        await ragSystem.initialize();
+        ragSystemReady = true;
+      } catch (initError) {
+        console.error('RAG system initialization failed:', initError);
+        ragSystemReady = false;
+      }
+    } else {
+      ragSystemReady = true;
+    }
+
+    if (!ragSystemReady) {
+      return NextResponse.json({
+        success: false,
+        systemInfo: {
+          system: 'Digital Twin RAG System',
+          status: 'not available',
+          initialized: false,
+          message: 'RAG system is not available due to database connection issues. Please check Upstash Vector credentials.'
+        },
+        timestamp: new Date().toISOString()
+      });
+    }
+
     const info = await ragSystem.getSystemInfo();
     
     return NextResponse.json({

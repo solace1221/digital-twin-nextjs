@@ -25,7 +25,7 @@ export class GroqLLMClient {
     cost: 0
   };
 
-  constructor(apiKey?: string, model: string = 'llama-3.1-70b-versatile') {
+  constructor(apiKey?: string, model: string = 'llama-3.1-8b-instant') {
     this.groq = new Groq({
       apiKey: apiKey || process.env.GROQ_API_KEY
     });

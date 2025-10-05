@@ -23,6 +23,7 @@ export class RAGSystem {
   private vectorClient: UpstashVectorClient;
   private embeddingService: EmbeddingService;
   private isInitialized: boolean = false;
+  private vectorStorageAvailable: boolean = false;
 
   constructor() {
     this.groq = new GroqLLMClient();
@@ -60,6 +61,10 @@ export class RAGSystem {
       console.log(`Found ${contentChunks.length} content chunks to process`);
 
       // Generate embeddings and store in vector database
+      let vectorStorageSuccessful = false;
+      let processedChunks = 0;
+      let vectorStorageError = null;
+
       for (let i = 0; i < contentChunks.length; i++) {
         const chunk = contentChunks[i];
         const meta = metadata[i];
@@ -72,13 +77,33 @@ export class RAGSystem {
               content: chunk,
               index: i
             });
+            processedChunks++;
+            vectorStorageSuccessful = true;
           } catch (error) {
             console.warn(`Failed to process chunk ${i}:`, error);
+            
+            // Store the first error for later reference
+            if (!vectorStorageError) {
+              vectorStorageError = error;
+            }
+            
+            // If this is the first chunk and it fails with auth error, stop trying
+            if (i === 0 && error instanceof Error && error.message.includes('Unauthorized')) {
+              console.warn('Vector storage appears to be unavailable due to authentication issues. RAG system will continue without vector search capabilities.');
+              break;
+            }
           }
         }
       }
 
-      console.log('Profile data loaded and indexed successfully');
+      if (vectorStorageSuccessful) {
+        console.log(`Profile data loaded and ${processedChunks} chunks indexed successfully`);
+        this.vectorStorageAvailable = true;
+      } else {
+        console.warn('Profile data loaded but vector storage is not available. Search functionality will be limited.');
+        console.warn('Vector storage error:', vectorStorageError);
+        this.vectorStorageAvailable = false;
+      }
     } catch (error) {
       console.error('Error loading profile data:', error);
       throw error;
@@ -115,6 +140,12 @@ export class RAGSystem {
       await this.initialize();
     }
 
+    // If vector storage is not available, return empty results
+    if (!this.vectorStorageAvailable) {
+      console.warn('Vector search unavailable - vector storage was not initialized successfully');
+      return [];
+    }
+
     try {
       console.log(`Searching for: "${query}"`);
       
@@ -142,6 +173,13 @@ export class RAGSystem {
       return searchResults;
     } catch (error) {
       console.error('Error during search:', error);
+      
+      // If vector search fails due to authentication, return empty results
+      if (error instanceof Error && error.message.includes('Unauthorized')) {
+        console.warn('Vector search unavailable due to authentication issues. Returning empty results.');
+        return [];
+      }
+      
       throw error;
     }
   }
@@ -157,20 +195,24 @@ export class RAGSystem {
         .map((result, index) => `[Context ${index + 1}]: ${result.content}`)
         .join('\n\n');
 
-      // Create the prompt
-      const prompt = `Based on the following context about my professional profile, please answer the question.
+      // Create the prompt with first-person instruction
+      const prompt = `Based on the following information about you (Lovely Pearl B. Alan), answer the question in FIRST PERSON.
 
-Context:
+Important: You ARE Lovely. Use "I", "my", "me" throughout your answer. Never refer to yourself in third person.
+
+Your Information:
 ${context}
 
 Question: ${query}
 
-Please provide a comprehensive and accurate answer based on the context provided. If the context doesn't contain enough information to fully answer the question, please indicate what additional information might be needed.
+Answer as Lovely herself:`;
 
-Answer:`;
-
-      // Generate response using Groq
+      // Generate response using Groq with system message
       const response = await this.groq.generateResponse([
+        { 
+          role: 'system', 
+          content: 'You are Lovely Pearl B. Alan, a BSIT student at St. Paul University Philippines. Answer all questions in FIRST PERSON as if YOU are Lovely speaking directly about YOUR OWN background, skills, and experience. Always use "I", "my", "me" - NEVER refer to Lovely in third person. Be honest and natural - you\'re a talented student with real achievements, currently pursuing your degree and looking for opportunities to grow.'
+        },
         { role: 'user', content: prompt }
       ], {
         temperature: options.temperature || 0.7,
@@ -195,20 +237,24 @@ Answer:`;
         .map((result, index) => `[Context ${index + 1}]: ${result.content}`)
         .join('\n\n');
 
-      // Create the prompt
-      const prompt = `Based on the following context about my professional profile, please answer the question.
+      // Create the prompt with first-person instruction
+      const prompt = `Based on the following information about you (Lovely Pearl B. Alan), answer the question in FIRST PERSON.
 
-Context:
+Important: You ARE Lovely. Use "I", "my", "me" throughout your answer. Never refer to yourself in third person.
+
+Your Information:
 ${context}
 
 Question: ${query}
 
-Please provide a comprehensive and accurate answer based on the context provided. If the context doesn't contain enough information to fully answer the question, please indicate what additional information might be needed.
+Answer as Lovely herself:`;
 
-Answer:`;
-
-      // Generate streaming response using Groq
+      // Generate streaming response using Groq with system message
       const stream = this.groq.generateStreamingResponse([
+        { 
+          role: 'system', 
+          content: 'You are Lovely Pearl B. Alan, a BSIT student at St. Paul University Philippines. Answer all questions in FIRST PERSON as if YOU are Lovely speaking directly about YOUR OWN background, skills, and experience. Always use "I", "my", "me" - NEVER refer to Lovely in third person. Be honest and natural - you\'re a talented student with real achievements, currently pursuing your degree and looking for opportunities to grow.'
+        },
         { role: 'user', content: prompt }
       ], {
         temperature: options.temperature || 0.7,
@@ -244,14 +290,36 @@ Answer:`;
     isInitialized: boolean;
     vectorInfo: any;
     usageStats: any;
+    vectorStorageAvailable?: boolean;
   }> {
-    const vectorInfo = await this.vectorClient.getVectorInfo();
+    let vectorInfo = null;
+    
+    try {
+      if (this.vectorStorageAvailable) {
+        vectorInfo = await this.vectorClient.getVectorInfo();
+      } else {
+        vectorInfo = {
+          status: 'unavailable',
+          reason: 'Vector storage authentication failed',
+          recommendation: 'Check Upstash Vector credentials'
+        };
+      }
+    } catch (error) {
+      console.warn('Failed to get vector info:', error);
+      vectorInfo = {
+        status: 'error',
+        error: error instanceof Error ? error.message : 'Unknown error',
+        recommendation: 'Check Upstash Vector credentials and network connectivity'
+      };
+    }
+    
     const usageStats = this.groq.getUsageStats();
 
     return {
       isInitialized: this.isInitialized,
       vectorInfo,
-      usageStats
+      usageStats,
+      vectorStorageAvailable: this.vectorStorageAvailable
     };
   }
 

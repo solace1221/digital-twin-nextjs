@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "digital-twin-lovely": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://localhost:3002/api/mcp"
+      ]
+    },
+    "bootcamp-rag": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://ai-assist.ausbizconsulting.com.au/api/mcp"
+      ]
+    },
+    "tech-bootcamp-consultations": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://booking-cal.ausbizconsulting.com.au/api/mcp"
+      ]
+    },
+    "rolldice": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://rolldice.ausbizconsulting.com.au/api/mcp"
+      ]
+    }
+  }
+}

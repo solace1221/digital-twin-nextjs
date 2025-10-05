@@ -1,0 +1,379 @@
+{
+  "personal": {
+    "name": "Lovely Pearl B. Alan",
+    "title": "BSIT Student – Web & App Development | Aspiring Data Analyst",
+    "location": "Tuguegarao City, Cagayan, Philippines",
+    "summary": "Motivated and detail-oriented BSIT student majoring in Web and App Development at St. Paul University Philippines. Strong foundations in database management, programming, and front-end development. Recognized as a President's Lister with proven leadership experience through active involvement in student organizations. Passionate about leveraging data and technology to solve real-world challenges.",
+    "elevator_pitch": "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I aim to grow into a Data Analyst role where I can apply my skills in data-driven decision-making.",
+    "contact": {
+      "email": "lovelyalan@spup.edu.ph",
+      "linkedin": "https://www.linkedin.com/in/lovely-pearl-alan-62bbb2311/",
+      "github": "https://github.com/solace1221",
+      "portfolio": "https://github.com/solace1221 (developing dedicated portfolio site)"
+    }
+  },
+  "salary_location": {
+    "current_status": "Student (Final Year BSIT)",
+    "salary_expectations": {
+      "entry_level_philippines": "₱25,000 - ₱35,000 PHP per month",
+      "entry_level_international": "$45,000 - $55,000 USD annually",
+      "internship_rate": "₱15,000 - ₱20,000 PHP per month",
+      "flexible_based_on": "Learning opportunities, growth potential, company culture"
+    },
+    "location_preferences": {
+      "preferred": ["Remote", "Hybrid", "Metro Manila", "Tuguegarao City"],
+      "open_to": ["Cebu", "Davao", "International (with proper visa support)"],
+      "not_preferred": ["Full on-site in locations requiring long commute"]
+    },
+    "relocation_details": {
+      "willing_to_relocate": true,
+      "timeline": "Can relocate within 30-60 days",
+      "support_needed": "Visa sponsorship for international roles",
+      "constraints": "Family considerations for long-term international assignments"
+    },
+    "remote_work_capabilities": {
+      "experience_level": "Intermediate - 2+ years academic and organizational remote work",
+      "tools_proficiency": ["Zoom", "Google Workspace", "Microsoft Teams", "Slack", "Trello", "GitHub"],
+      "home_office_setup": "Dedicated workspace with reliable internet (50+ Mbps)",
+      "time_zone_flexibility": "Can work across Philippine Standard Time (UTC+8) and accommodate 2-3 hours overlap with other zones"
+    },
+    "travel_availability": {
+      "domestic_travel": "Up to 25% - available for training, conferences, and team meetings",
+      "international_travel": "Available with proper documentation and advance notice",
+      "constraints": "Academic schedule considerations until graduation (June 2026)"
+    },
+    "work_authorization": {
+      "philippines": "Full work authorization as Philippine Citizen",
+      "international": "Requires visa sponsorship",
+      "graduation_date": "Expected June 2026",
+      "current_availability": "Part-time during studies, full-time after graduation"
+    }
+  }
+}
+      "internship_rate": "₱15,000 - ₱20,000 PHP per month",
+      "flexible_based_on": "Learning opportunities, growth potential, company culture"
+    },
+    "location_preferences": {
+      "preferred": ["Remote", "Hybrid", "Metro Manila", "Tuguegarao City"],
+      "open_to": ["Cebu", "Davao", "International (with proper visa support)"],
+      "not_preferred": ["Full on-site in locations requiring long commute"]
+    },
+    "relocation_details": {
+      "willing_to_relocate": true,
+      "timeline": "Can relocate within 30-60 days",
+      "support_needed": "Visa sponsorship for international roles",
+      "constraints": "Family considerations for long-term international assignments"
+    },
+    "remote_work_capabilities": {
+      "experience_level": "Intermediate - 2+ years academic and organizational remote work",
+      "tools_proficiency": ["Zoom", "Google Workspace", "Microsoft Teams", "Slack", "Trello", "GitHub"],
+      "home_office_setup": "Dedicated workspace with reliable internet (50+ Mbps)",
+      "time_zone_flexibility": "Can work across Philippine Standard Time (UTC+8) and accommodate 2-3 hours overlap with other zones"
+    },
+    "travel_availability": {
+      "domestic_travel": "Up to 25% - available for training, conferences, and team meetings",
+      "international_travel": "Available with proper documentation and advance notice",
+      "constraints": "Academic schedule considerations until graduation (June 2026)"
+    },
+    "work_authorization": {
+      "philippines": "Full work authorization as Philippine Citizen",
+      "international": "Requires visa sponsorship",
+      "graduation_date": "Expected June 2026",
+      "current_availability": "Part-time during studies, full-time after graduation"
+    }
+  },
+  "experience_detailed_star": [
+    {
+      "organization": "Junior Philippine Computer Society – SPUP Chapter",
+      "title": "President",
+      "duration": "August 2025 – Present (AY 2025–2026)",
+      "team_size": "50+ active members across 200+ IT students",
+      "budget_responsibility": "₱150,000 PHP annual organizational budget",
+      "achievements_star": [
+        {
+          "situation": "JPCS faced declining student engagement with only 30% active participation rate among 200+ IT students. Previous events had low attendance (15-20 students) and limited industry connections.",
+          "task": "As newly elected President, transform JPCS into a vibrant tech community that provides real value to IT students through industry connections, skill development, and career preparation.",
+          "action": "Developed comprehensive engagement strategy: (1) Organized 8 hands-on technical workshops covering trending technologies, (2) Launched 3 intensive coding bootcamps with industry mentors, (3) Established partnerships with 3 local tech companies for guest lectures and internship opportunities, (4) Implemented digital attendance tracking system using Google Forms and Sheets, (5) Created member feedback system resulting in 95% satisfaction rate, (6) Launched peer mentoring program pairing senior and junior students.",
+          "result": "Achieved 75% active participation rate (150% increase), grew total membership by 40% (from 125 to 175 members), secured 15 internship placements for members, increased event attendance from 20 to 80+ students per event, established sustainable partnerships generating ₱50,000 in sponsored training programs."
+        },
+        {
+          "situation": "Limited career preparation resources for IT students entering competitive job market.",
+          "task": "Create comprehensive career development program for JPCS members.",
+          "action": "Organized career fair with 5 tech companies, conducted resume writing workshops, implemented mock interview sessions, created industry networking events.",
+          "result": "85% of participating final-year students received job offers or internship placements, average salary increase of 20% for JPCS members compared to previous cohorts."
+        }
+      ],
+      "skills_demonstrated": {
+        "leadership": "Led team of 15 officers and 50+ active members",
+        "project_management": "Managed 12+ concurrent events and programs",
+        "stakeholder_management": "Built relationships with 3 tech companies and university administration",
+        "data_analysis": "Tracked engagement metrics and member satisfaction using spreadsheet analysis",
+        "budget_management": "Managed ₱150,000 annual budget with 98% accuracy",
+        "public_speaking": "Presented to audiences of 100+ students and industry professionals"
+      },
+      "quantified_impact": {
+        "membership_growth": "40% increase (125 → 175 members)",
+        "participation_rate": "150% improvement (30% → 75%)",
+        "event_attendance": "400% increase (20 → 80+ per event)",
+        "industry_partnerships": "3 new partnerships established",
+        "internship_placements": "15 members placed in internships",
+        "budget_efficiency": "98% budget utilization accuracy"
+      }
+    },
+    {
+      "organization": "Paulinian Student Government – Uniwide Council",
+      "title": "Executive Secretary",
+      "duration": "August 2025 – Present (AY 2025–2026)",
+      "scope": "University-wide student government representing 3,000+ students",
+      "achievements_star": [
+        {
+          "situation": "Student government meetings lacked proper documentation and follow-up, causing confusion about decisions and action items. Previous secretary position had 40% incomplete records.",
+          "task": "Establish comprehensive documentation system for all PSG activities and ensure transparent communication across all councils.",
+          "action": "Implemented digital meeting management system using Google Workspace, created standardized meeting templates, established follow-up tracking system, coordinated communication between 8 different councils, managed correspondence with university administration.",
+          "result": "Achieved 100% meeting documentation accuracy, reduced action item follow-up time from 7 days to 2 days, improved inter-council communication efficiency by 60%, established transparent decision-making process affecting 3,000+ students."
+        }
+      ],
+      "skills_demonstrated": {
+        "documentation": "Maintained 100% accurate records for 25+ meetings",
+        "coordination": "Managed communication across 8 councils",
+        "process_improvement": "Reduced administrative inefficiencies by 60%",
+        "digital_tools": "Implemented Google Workspace-based workflow system"
+      },
+      "quantified_impact": {
+        "documentation_accuracy": "100% (improved from 60%)",
+        "response_time": "70% faster (7 days → 2 days)",
+        "student_impact": "3,000+ students affected by improved processes",
+        "meeting_efficiency": "60% improvement in inter-council communication"
+      }
+    }
+  ],
+      "skills_used": ["Documentation", "Administration", "Cross-functional teamwork"]
+    }
+  ],
+  "skills": {
+    "technical": {
+      "programming_languages": [
+        {"language": "C++", "proficiency": "Intermediate", "certification": "Cisco Essentials"},
+        {"language": "JavaScript", "proficiency": "Intermediate", "certification": "Cisco Essentials"}
+      ],
+      "web_development": ["HTML", "CSS", "JavaScript", "Laravel", "Front-End Development"],
+      "data_systems": ["Database Management System (DBMS)", "File Management", "Data Control"],
+      "tools": ["GitHub", "Cybersecurity Fundamentals", "Interaction Design"]
+    },
+    "soft_skills": ["Leadership & Teamwork", "Communication & Collaboration", "Adaptability & Problem-Solving", "Organizational & Analytical Thinking"],
+    "certifications": [
+      "C++ Essentials 1 – Cisco (Aug 2025)",
+      "JavaScript Essentials 1 – Cisco (Aug 2025)"
+    ]
+  },
+  "education": {
+    "university": "St. Paul University Philippines",
+    "degree": "Bachelor of Science in Information Technology – Major in Web and App Development",
+    "graduation_year": 2026,
+    "honors": "President's Lister",
+    "relevant_coursework": ["Database Management", "Web Development", "Programming Fundamentals", "File & Data Management"]
+  },
+  "projects_portfolio": [
+    {
+      "name": "Capstone: Good Moral Application and Monitoring System with Decision Support",
+      "description": "A Laravel- and SQL-based system for St. Paul University Philippines, designed for the Office of Student Affairs. Supports multiple roles, decision support, and violations tracking.",
+      "technologies": ["Laravel", "SQL", "Responsive Web Design"],
+      "impact": "Streamlined clearance and monitoring processes for students and administrators",
+      "github_url": "https://github.com/solace1221",
+      "live_demo": "to be deployed"
+    }
+  ],
+  "career_goals": {
+    "short_term": "Secure an internship or entry-level role in data analytics or software development",
+    "long_term": "Pursue a career as a Data Analyst or Software Engineer specializing in web and data systems",
+    "learning_focus": ["Data Analytics", "Web Application Development", "Database Optimization"],
+    "industries_interested": ["IT Services", "Education Technology", "Business Analytics"]
+  },
+  "interview_prep": {
+    "common_questions": {
+      "behavioral": [
+        "Tell me about a time you had to balance academics and leadership roles",
+        "Describe how you handled organizing an event with limited resources",
+        "How do you adapt when faced with new technical challenges?"
+      ],
+      "technical": [
+        "Explain how you design a database for a small application",
+        "Walk me through a project where you used Laravel or front-end development",
+        "What steps would you take to debug a web application issue?"
+      ],
+      "situational": [
+        "A team member misses a deadline — how do you handle it?",
+        "You're asked to use a new tool you're unfamiliar with. How would you approach learning it?",
+        "How would you handle conflicting priorities between academics and internship tasks?"
+      ],
+      "company_research": {
+        "research_areas": ["Company culture and values", "Role expectations", "Opportunities for growth and training"],
+        "preparation_questions": ["What skills are most valued for this role?", "How does your company support student interns?", "What projects could I contribute to immediately?"]
+      }
+    },
+    "weakness_mitigation": [
+      {
+        "weakness": "Limited industry experience",
+        "mitigation": "Actively gaining hands-on practice through academic projects, certifications, and leadership experiences"
+      }
+    ]
+  },
+  "professional_development": {
+    "recent_learning": ["C++ Essentials Certification", "JavaScript Essentials Certification", "Laravel Development Projects"],
+    "conferences_attended": ["School-led IT seminars and JPCS-organized workshops"],
+    "open_source": ["Actively learning GitHub for project hosting and collaboration"]
+  },
+  "projects": [
+    {
+      "title": "Good Moral Application and Monitoring System",
+      "role": "Lead Developer & Database Designer",
+      "duration": "6 months (2024)",
+      "technologies": ["Laravel", "MySQL", "PHP", "HTML/CSS", "JavaScript", "Bootstrap"],
+      "description": "Comprehensive web application for managing student good moral certificate applications with decision support features",
+      "achievements_star": {
+        "situation": "Manual good moral certificate processing created bottlenecks, taking 5-7 days per application with frequent data errors",
+        "task": "Design and develop automated system to streamline application process and provide administrative insights",
+        "action": "Built full-stack Laravel application with MySQL database managing 500+ student records, implemented automated workflow with email notifications, created data visualization dashboard showing application trends and processing times",
+        "result": "Reduced processing time by 80% (from 5-7 days to 1 day), eliminated data entry errors through validation, processed 200+ applications in pilot phase with 99.5% accuracy rate"
+      },
+      "data_analysis_components": [
+        "Student behavior pattern analysis across 500+ records",
+        "Application processing time trend analysis", 
+        "Created automated reporting dashboard with key metrics",
+        "Data validation and error detection algorithms"
+      ],
+      "impact_metrics": {
+        "users_served": "200+ students, 15+ administrative staff",
+        "data_volume": "500+ student records, 1000+ application transactions",
+        "processing_improvement": "80% reduction in processing time",
+        "accuracy_rate": "99.5% data accuracy"
+      }
+    }
+  ],
+  "technical_skills_detailed": {
+    "data_analysis_current": [
+      {
+        "skill": "Database Management & SQL",
+        "proficiency": "Intermediate",
+        "evidence": "Designed complex relational database with 500+ records, optimized queries for performance"
+      },
+      {
+        "skill": "Data Validation & Quality Control",
+        "proficiency": "Intermediate", 
+        "evidence": "Implemented validation achieving 99.5% accuracy across 1000+ transactions"
+      },
+      {
+        "skill": "Excel/Google Sheets",
+        "proficiency": "Intermediate",
+        "evidence": "Academic projects with formulas, basic analysis, charting"
+      }
+    ],
+    "programming_experience": [
+      {
+        "language": "PHP/Laravel",
+        "experience": "12+ months",
+        "complexity": "Full-stack web applications with database integration"
+      },
+      {
+        "language": "SQL/MySQL",
+        "experience": "12+ months", 
+        "complexity": "Complex queries, database design, optimization"
+      },
+      {
+        "language": "JavaScript",
+        "experience": "18+ months",
+        "certification": "Cisco JavaScript Essentials",
+        "complexity": "DOM manipulation, AJAX, interactive web features"
+      }
+    ],
+    "skills_gaps_identified": [
+      "Python pandas/numpy for data manipulation",
+      "Business Intelligence tools (Looker, Quicksight, Power BI)",
+      "Advanced Excel (pivot tables, macros, VBA)",
+      "Statistical analysis software",
+      "Data visualization tools (Tableau, matplotlib)"
+    ]
+  },
+  "content_chunks": [
+    {
+      "id": "personal_overview",
+      "title": "Personal Overview",
+      "type": "personal",
+      "content": "I'm Lovely Pearl B. Alan, a BSIT student majoring in Web & App Development at St. Paul University Philippines. I'm an aspiring Data Analyst with strong foundations in database management, programming, and front-end development. I'm recognized as a President's Lister with proven leadership experience through active involvement in student organizations.",
+      "metadata": {
+        "category": "personal",
+        "tags": ["overview", "student", "data_analyst", "president_lister"]
+      }
+    },
+    {
+      "id": "technical_skills",
+      "title": "Technical Skills",
+      "type": "skills",
+      "content": "My programming skills include C++ (Intermediate with Cisco certification) and JavaScript (Intermediate with Cisco certification). In web development, I work with HTML, CSS, JavaScript, Laravel, and Front-End Development. I have experience with Database Management Systems (DBMS), File Management, and Data Control. I use tools like GitHub, and have knowledge in Cybersecurity Fundamentals and Interaction Design.",
+      "metadata": {
+        "category": "technical",
+        "tags": ["programming", "web_development", "databases", "tools"]
+      }
+    },
+    {
+      "id": "education",
+      "title": "Education",
+      "type": "education",
+      "content": "I'm currently pursuing a Bachelor of Science in Information Technology with a major in Web and App Development at St. Paul University Philippines, expected to graduate in 2026. I'm honored to be a President's Lister. My relevant coursework includes Database Management, Web Development, Programming Fundamentals, and File & Data Management.",
+      "metadata": {
+        "category": "education",
+        "tags": ["bsit", "web_development", "president_lister", "graduation_2026"]
+      }
+    },
+    {
+      "id": "leadership_experience",
+      "title": "Leadership Experience",
+      "type": "experience",
+      "content": "I serve as President of the Junior Philippine Computer Society (JPCS) at St. Paul University Philippines from 2024-2025, where I organize IT-related events and workshops. I also hold the position of Executive Secretary for the Paulinian Student Government (2024-2025), managing documentation and supporting cross-functional teamwork.",
+      "metadata": {
+        "category": "leadership",
+        "tags": ["president", "jpcs", "student_government", "leadership"]
+      }
+    },
+    {
+      "id": "capstone_project",
+      "title": "Capstone Project",
+      "type": "projects",
+      "content": "My main project is the 'Good Moral Application and Monitoring System with Decision Support' - a comprehensive web-based system designed to streamline student conduct monitoring and application processes. The system automates the good moral certificate application process, tracks student behavior patterns, and provides decision support for administrative staff. It's built using Laravel framework with SQL database, demonstrating my skills in full-stack web development and database management.",
+      "metadata": {
+        "category": "projects",
+        "tags": ["capstone", "laravel", "database", "web_system", "decision_support"]
+      }
+    },
+    {
+      "id": "career_goals",
+      "title": "Career Goals",
+      "type": "career",
+      "content": "My short-term goal is to secure an internship in data analytics to gain hands-on experience and build my professional network. Long-term, I aspire to become a Data Analyst or Software Engineer, using my technical skills and analytical thinking to contribute to data-driven decision making in organizations. I'm passionate about leveraging data and technology to solve real-world challenges.",
+      "metadata": {
+        "category": "career",
+        "tags": ["data_analyst", "software_engineer", "internship", "goals"]
+      }
+    },
+    {
+      "id": "soft_skills",
+      "title": "Soft Skills & Strengths",
+      "type": "skills",
+      "content": "I excel in Leadership & Teamwork, Communication & Collaboration, Adaptability & Problem-Solving, and Organizational & Analytical Thinking. My experience as a student leader has strengthened my ability to work cross-functionally, manage documentation, and organize events. I'm detail-oriented and motivated, with a passion for continuous learning and professional development.",
+      "metadata": {
+        "category": "soft_skills",
+        "tags": ["leadership", "teamwork", "communication", "problem_solving"]
+      }
+    },
+    {
+      "id": "certifications",
+      "title": "Certifications & Achievements",
+      "type": "achievements",
+      "content": "I hold C++ Essentials 1 certification from Cisco (August 2025) and JavaScript Essentials 1 certification from Cisco (August 2025). I'm recognized as a President's Lister for academic excellence. I'm actively involved in professional development through school-led IT seminars and JPCS-organized workshops.",
+      "metadata": {
+        "category": "achievements",
+        "tags": ["cisco_certification", "president_lister", "professional_development"]
+      }
+    }
+  ]
+}

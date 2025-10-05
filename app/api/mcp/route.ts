@@ -1,343 +1,334 @@
-// MCP Server API Route - Simplified Implementation
 import { NextRequest, NextResponse } from 'next/server';
 import { RAGSystem } from '@/lib/rag-system';
+import { LocalRAGSystem } from '@/lib/local-rag-system';
+import fs from 'fs';
+import path from 'path';
 
-// Global RAG system instance
-const ragSystem = new RAGSystem();
+// Initialize RAG system
+let ragSystem: RAGSystem | LocalRAGSystem;
+let ragInitialized = false;
 
-// MCP Server implementation
-class DigitalTwinMCPServer {
-  async handleToolsList() {
-    return {
-      tools: [
-        {
-          name: 'query_profile',
-          description: 'Query the digital twin professional profile using semantic search',
-          inputSchema: {
-            type: 'object',
-            properties: {
-              query: {
-                type: 'string',
-                description: 'The query to search for in the profile'
-              },
-              topK: {
-                type: 'number',
-                description: 'Number of top results to return (default: 5)',
-                default: 5
-              },
-              temperature: {
-                type: 'number',
-                description: 'LLM temperature for response generation (default: 0.7)',
-                default: 0.7
-              }
-            },
-            required: ['query']
-          }
-        },
-        {
-          name: 'get_system_info',
-          description: 'Get information about the RAG system status and usage',
-          inputSchema: {
-            type: 'object',
-            properties: {}
-          }
-        },
-        {
-          name: 'search_profile',
-          description: 'Search the profile without generating a response',
-          inputSchema: {
-            type: 'object',
-            properties: {
-              query: {
-                type: 'string',
-                description: 'The search query'
-              },
-              topK: {
-                type: 'number',
-                description: 'Number of results to return',
-                default: 5
-              }
-            },
-            required: ['query']
-          }
-        }
-      ]
-    };
-  }
-
-  async handleToolCall(name: string, args: any) {
+async function initializeRAG() {
+  if (!ragInitialized) {
     try {
-      // Initialize RAG system if needed
-      if (!ragSystem['isInitialized']) {
-        await ragSystem.initialize();
-      }
-
-      switch (name) {
-        case 'query_profile': {
-          const { query, topK = 5, temperature = 0.7 } = args;
-          const result = await ragSystem.queryWithResponse(query, {
-            topK,
-            temperature
-          });
-          
-          return {
-            content: [
-              {
-                type: 'text',
-                text: JSON.stringify({
-                  query,
-                  response: result.response,
-                  searchResults: result.searchResults,
-                  usageStats: result.usageStats
-                }, null, 2)
-              }
-            ]
-          };
-        }
-
-        case 'search_profile': {
-          const { query, topK = 5 } = args;
-          const results = await ragSystem.search(query, { topK });
-          
-          return {
-            content: [
-              {
-                type: 'text',
-                text: JSON.stringify({
-                  query,
-                  results: results.map(r => ({
-                    content: r.content,
-                    score: r.score,
-                    section: r.metadata?.section
-                  }))
-                }, null, 2)
-              }
-            ]
-          };
-        }
-
-        case 'get_system_info': {
-          const info = await ragSystem.getSystemInfo();
-          
-          return {
-            content: [
-              {
-                type: 'text',
-                text: JSON.stringify(info, null, 2)
-              }
-            ]
-          };
-        }
-
-        default:
-          throw new Error(`Unknown tool: ${name}`);
-      }
+      // Try Upstash first
+      ragSystem = new RAGSystem();
+      await ragSystem.initialize();
+      console.log('MCP: RAG system initialized with Upstash');
     } catch (error) {
-      return {
-        content: [
-          {
-            type: 'text',
-            text: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`
-          }
-        ],
-        isError: true
-      };
+      console.warn('MCP: Upstash failed, using local RAG', error);
+      ragSystem = new LocalRAGSystem();
+      await ragSystem.initialize();
     }
+    ragInitialized = true;
   }
-
-  async handlePromptsList() {
-    return {
-      prompts: [
-        {
-          name: 'professional_summary',
-          description: 'Get a comprehensive professional summary',
-          arguments: []
-        },
-        {
-          name: 'skills_expertise',
-          description: 'Query about skills and technical expertise',
-          arguments: [
-            {
-              name: 'domain',
-              description: 'Specific domain or technology to focus on',
-              required: false
-            }
-          ]
-        },
-        {
-          name: 'experience_projects',
-          description: 'Query about work experience and projects',
-          arguments: [
-            {
-              name: 'industry',
-              description: 'Specific industry or type of project',
-              required: false
-            }
-          ]
-        }
-      ]
-    };
-  }
-
-  async handlePromptsGet(name: string, args?: any) {
-    const basePrompts: Record<string, string> = {
-      professional_summary: 'Please provide a comprehensive professional summary including background, expertise, and career highlights.',
-      skills_expertise: args?.domain 
-        ? `What are the key skills and expertise in ${args.domain}?`
-        : 'What are the main technical skills and areas of expertise?',
-      experience_projects: args?.industry
-        ? `Describe relevant work experience and projects in ${args.industry}.`
-        : 'Describe key work experience and notable projects.'
-    };
-
-    const prompt = basePrompts[name];
-    if (!prompt) {
-      throw new Error(`Unknown prompt: ${name}`);
-    }
-
-    return {
-      description: `Generated prompt for ${name}`,
-      messages: [
-        {
-          role: 'user',
-          content: {
-            type: 'text',
-            text: prompt
-          }
-        }
-      ]
-    };
-  }
-
-  async handleResourcesList() {
-    return {
-      resources: [
-        {
-          uri: 'profile://personal-info',
-          name: 'Personal Information',
-          description: 'Basic personal and contact information',
-          mimeType: 'application/json'
-        },
-        {
-          uri: 'profile://professional-summary',
-          name: 'Professional Summary',
-          description: 'Professional background and summary',
-          mimeType: 'text/plain'
-        },
-        {
-          uri: 'profile://skills',
-          name: 'Technical Skills',
-          description: 'Technical skills and expertise areas',
-          mimeType: 'application/json'
-        },
-        {
-          uri: 'profile://experience',
-          name: 'Work Experience',
-          description: 'Professional work experience and history',
-          mimeType: 'application/json'
-        }
-      ]
-    };
-  }
-
-  async handleResourcesRead(uri: string) {
-    const resourceQueries: Record<string, string> = {
-      'profile://personal-info': 'personal information contact details',
-      'profile://professional-summary': 'professional summary background career',
-      'profile://skills': 'technical skills programming languages frameworks',
-      'profile://experience': 'work experience projects employment history'
-    };
-
-    const query = resourceQueries[uri];
-    if (!query) {
-      throw new Error(`Unknown resource: ${uri}`);
-    }
-
-    try {
-      if (!ragSystem['isInitialized']) {
-        await ragSystem.initialize();
-      }
-
-      const results = await ragSystem.search(query, { topK: 10 });
-      const content = results.map(r => r.content).join('\n\n');
-
-      return {
-        contents: [
-          {
-            uri,
-            mimeType: 'text/plain',
-            text: content
-          }
-        ]
-      };
-    } catch (error) {
-      throw new Error(`Failed to read resource ${uri}: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  }
+  return ragSystem;
 }
 
-// Export the MCP server for use in API routes and standalone execution
-export const mcpServer = new DigitalTwinMCPServer();
-
-// API route handlers
+// MCP Protocol Handler
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    console.log('MCP request received:', body);
+    
+    // Handle JSON-RPC 2.0 protocol
+    const { jsonrpc, id, method, params } = body;
 
-    const { method, params } = body;
-
-    let result;
-    switch (method) {
-      case 'tools/list':
-        result = await mcpServer.handleToolsList();
-        break;
-      case 'tools/call':
-        result = await mcpServer.handleToolCall(params.name, params.arguments);
-        break;
-      case 'prompts/list':
-        result = await mcpServer.handlePromptsList();
-        break;
-      case 'prompts/get':
-        result = await mcpServer.handlePromptsGet(params.name, params.arguments);
-        break;
-      case 'resources/list':
-        result = await mcpServer.handleResourcesList();
-        break;
-      case 'resources/read':
-        result = await mcpServer.handleResourcesRead(params.uri);
-        break;
-      default:
-        throw new Error(`Unsupported method: ${method}`);
+    if (jsonrpc !== '2.0') {
+      return NextResponse.json({
+        jsonrpc: '2.0',
+        id: id || null,
+        error: {
+          code: -32600,
+          message: 'Invalid Request: jsonrpc must be "2.0"'
+        }
+      }, { status: 400 });
     }
 
+    // Handle different MCP methods
+    switch (method) {
+      case 'initialize': {
+        return NextResponse.json({
+          jsonrpc: '2.0',
+          id,
+          result: {
+            protocolVersion: '2024-11-05',
+            capabilities: {
+              tools: {
+                listChanged: false
+              },
+              resources: {
+                subscribe: false,
+                listChanged: false
+              }
+            },
+            serverInfo: {
+              name: 'digital-twin-mcp',
+              version: '1.0.0'
+            }
+          }
+        });
+      }
+
+      case 'notifications/initialized': {
+        // Client confirms initialization is complete
+        // No response needed for notifications
+        return NextResponse.json({
+          jsonrpc: '2.0',
+          id,
+          result: null
+        });
+      }
+
+      case 'tools/list': {
+        return NextResponse.json({
+          jsonrpc: '2.0',
+          id,
+          result: {
+            tools: [
+              {
+                name: 'query_profile',
+                description: 'Search Lovely Pearl Alan\'s professional profile using semantic search. Returns relevant information about her background, skills, education, experience, and career goals.',
+                inputSchema: {
+                  type: 'object',
+                  properties: {
+                    query: {
+                      type: 'string',
+                      description: 'The question or topic to search for in the profile (e.g., "What are her technical skills?", "Tell me about her education", "What projects has she worked on?")'
+                    },
+                    topK: {
+                      type: 'number',
+                      description: 'Number of top results to return (default: 5)',
+                      default: 5
+                    }
+                  },
+                  required: ['query']
+                }
+              },
+              {
+                name: 'chat_with_digital_twin',
+                description: 'Have a conversation with Lovely Pearl Alan\'s AI digital twin. Get personalized responses as if speaking directly with Lovely about her background, skills, and career aspirations.',
+                inputSchema: {
+                  type: 'object',
+                  properties: {
+                    message: {
+                      type: 'string',
+                      description: 'Your message or question to Lovely Pearl Alan'
+                    }
+                  },
+                  required: ['message']
+                }
+              },
+              {
+                name: 'get_system_info',
+                description: 'Get information about the digital twin system status, including RAG system details and available data.',
+                inputSchema: {
+                  type: 'object',
+                  properties: {},
+                  required: []
+                }
+              }
+            ]
+          }
+        });
+      }
+
+      case 'tools/call': {
+        const { name: toolName, arguments: toolArgs } = params || {};
+        
+        if (!toolName) {
+          return NextResponse.json({
+            jsonrpc: '2.0',
+            id,
+            error: {
+              code: -32602,
+              message: 'Invalid params: tool name is required'
+            }
+          }, { status: 400 });
+        }
+
+        // Initialize RAG system
+        const rag = await initializeRAG();
+
+        switch (toolName) {
+          case 'query_profile': {
+            const { query, topK = 5 } = toolArgs || {};
+            if (!query) {
+              return NextResponse.json({
+                jsonrpc: '2.0',
+                id,
+                error: {
+                  code: -32602,
+                  message: 'Invalid params: query is required'
+                }
+              }, { status: 400 });
+            }
+
+            const results = await rag.search(query, topK);
+            
+            return NextResponse.json({
+              jsonrpc: '2.0',
+              id,
+              result: {
+                content: [
+                  {
+                    type: 'text',
+                    text: JSON.stringify(results, null, 2)
+                  }
+                ]
+              }
+            });
+          }
+
+          case 'chat_with_digital_twin': {
+            const { message } = toolArgs || {};
+            if (!message) {
+              return NextResponse.json({
+                jsonrpc: '2.0',
+                id,
+                error: {
+                  code: -32602,
+                  message: 'Invalid params: message is required'
+                }
+              }, { status: 400 });
+            }
+
+            const response = await rag.queryWithResponse(message);
+            
+            return NextResponse.json({
+              jsonrpc: '2.0',
+              id,
+              result: {
+                content: [
+                  {
+                    type: 'text',
+                    text: response.response
+                  }
+                ]
+              }
+            });
+          }
+
+          case 'get_system_info': {
+            const info = {
+              system: 'Digital Twin RAG System',
+              subject: 'Lovely Pearl B. Alan',
+              status: 'operational',
+              ragInitialized,
+              ragType: ragSystem instanceof RAGSystem ? 'Upstash Vector' : 'Local',
+              timestamp: new Date().toISOString()
+            };
+            
+            return NextResponse.json({
+              jsonrpc: '2.0',
+              id,
+              result: {
+                content: [
+                  {
+                    type: 'text',
+                    text: JSON.stringify(info, null, 2)
+                  }
+                ]
+              }
+            });
+          }
+
+          default:
+            return NextResponse.json({
+              jsonrpc: '2.0',
+              id,
+              error: {
+                code: -32601,
+                message: `Method not found: ${toolName}`
+              }
+            }, { status: 404 });
+        }
+      }
+
+      case 'resources/list': {
+        return NextResponse.json({
+          jsonrpc: '2.0',
+          id,
+          result: {
+            resources: [
+              {
+                uri: 'digitaltwin://profile',
+                name: 'Lovely Pearl Alan Professional Profile',
+                description: 'Complete professional profile including education, skills, experience, projects, and career goals',
+                mimeType: 'application/json'
+              }
+            ]
+          }
+        });
+      }
+
+      case 'resources/read': {
+        const { uri } = params || {};
+        
+        if (uri === 'digitaltwin://profile') {
+          // Read the profile data
+          const profilePath = path.join(process.cwd(), 'data', 'digitaltwin.json');
+          const profileData = JSON.parse(fs.readFileSync(profilePath, 'utf-8'));
+          
+          return NextResponse.json({
+            jsonrpc: '2.0',
+            id,
+            result: {
+              contents: [
+                {
+                  uri: 'digitaltwin://profile',
+                  mimeType: 'application/json',
+                  text: JSON.stringify(profileData, null, 2)
+                }
+              ]
+            }
+          });
+        }
+
+        return NextResponse.json({
+          jsonrpc: '2.0',
+          id,
+          error: {
+            code: -32602,
+            message: `Invalid params: resource not found: ${uri}`
+          }
+        }, { status: 404 });
+      }
+
+      default:
+        return NextResponse.json({
+          jsonrpc: '2.0',
+          id,
+          error: {
+            code: -32601,
+            message: `Method not found: ${method}`
+          }
+        }, { status: 404 });
+    }
+  } catch (error) {
+    console.error('MCP API Error:', error);
     return NextResponse.json({
       jsonrpc: '2.0',
-      id: body.id || null,
-      result
-    });
-  } catch (error) {
-    console.error('MCP error:', error);
-    return NextResponse.json(
-      {
-        jsonrpc: '2.0',
-        id: null,
-        error: {
-          code: -32603,
-          message: error instanceof Error ? error.message : 'Unknown error'
-        }
-      },
-      { status: 500 }
-    );
+      id: null,
+      error: {
+        code: -32603,
+        message: 'Internal error',
+        data: error instanceof Error ? error.message : String(error)
+      }
+    }, { status: 500 });
   }
 }
 
+// Health check endpoint
 export async function GET() {
   return NextResponse.json({
-    name: 'Digital Twin MCP Server',
+    service: 'Digital Twin MCP Server',
+    status: 'operational',
     version: '1.0.0',
-    status: 'active',
-    capabilities: ['tools', 'prompts', 'resources'],
+    endpoints: {
+      initialize: 'POST with method: initialize',
+      tools: 'POST with method: tools/list or tools/call',
+      resources: 'POST with method: resources/list or resources/read'
+    },
     timestamp: new Date().toISOString()
   });
 }

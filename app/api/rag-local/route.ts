@@ -18,9 +18,32 @@ export async function POST(request: NextRequest) {
 
     console.log(`Processing Local RAG query: ${query}`);
 
-    // Initialize RAG system if not already done
+    // Try to initialize RAG system if not already done
+    let ragSystemReady = false;
     if (!localRAGSystem['isInitialized']) {
-      await localRAGSystem.initialize();
+      try {
+        await localRAGSystem.initialize();
+        ragSystemReady = true;
+      } catch (initError) {
+        console.error('Local RAG system initialization failed:', initError);
+        ragSystemReady = false;
+      }
+    } else {
+      ragSystemReady = true;
+    }
+
+    // Check if RAG system is ready
+    if (!ragSystemReady) {
+      return NextResponse.json(
+        {
+          error: 'Local RAG system not available',
+          message: 'Local RAG system failed to initialize. Please check the digital twin data files.',
+          query,
+          provider: 'local',
+          timestamp: new Date().toISOString()
+        },
+        { status: 503 }
+      );
     }
 
     // Execute the query
@@ -53,6 +76,34 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    // Try to initialize RAG system if not already done
+    let ragSystemReady = false;
+    if (!localRAGSystem['isInitialized']) {
+      try {
+        await localRAGSystem.initialize();
+        ragSystemReady = true;
+      } catch (initError) {
+        console.error('Local RAG system initialization failed:', initError);
+        ragSystemReady = false;
+      }
+    } else {
+      ragSystemReady = true;
+    }
+
+    if (!ragSystemReady) {
+      return NextResponse.json({
+        success: false,
+        systemInfo: {
+          system: 'Local Digital Twin RAG System',
+          status: 'not available',
+          initialized: false,
+          message: 'Local RAG system failed to initialize. Please check the digital twin data files.'
+        },
+        provider: 'local',
+        timestamp: new Date().toISOString()
+      });
+    }
+
     const info = await localRAGSystem.getSystemInfo();
     
     return NextResponse.json({
