@@ -40,7 +40,7 @@ export default function WelcomeToDigitalTwin() {
           <div className="flex justify-between items-center">
             {/* Logo */}
             <div className="text-xl font-bold text-cyan-400">
-              digiPearl
+              PearlAI
             </div>
             
             {/* Chat Button */}
@@ -74,7 +74,7 @@ export default function WelcomeToDigitalTwin() {
           {/* Main Title */}
           <div className="space-y-8">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8">
-              Hi, I'm <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">digiPearl</span>
+              Hi, I'm <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">PearlAI</span>
             </h1>
             
             <p className="text-xl sm:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
@@ -184,7 +184,7 @@ export default function WelcomeToDigitalTwin() {
           
           {/* Brand Section */}
           <div>
-            <h3 className="text-xl font-bold text-cyan-400 mb-4">digiPearl</h3>
+            <h3 className="text-xl font-bold text-cyan-400 mb-4">PearlAI</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Your intelligent digital twin with enhanced memory capabilities. Bridging the gap between AI and human-like conversation.
             </p>
@@ -287,7 +287,7 @@ export default function WelcomeToDigitalTwin() {
         <div className="border-t border-gray-800/50 mt-12 pt-8">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
             <div>
-              © 2024 digiPearl. Crafted with passion and code.
+              © 2024 PearlAI. Crafted with passion and code.
             </div>
             <div className="mt-4 md:mt-0">
               Enhanced Memory System • Next.js 15 • Powered by Upstash & Groq

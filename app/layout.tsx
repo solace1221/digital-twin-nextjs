@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hi, I'm digiPearl! - Lovely Pearl B. Alan | Professional Digital Twin",
-  description: "Interactive AI-powered professional consultation with digiPearl - the digital twin of Lovely Pearl B. Alan. BSIT Student, Technical Leader, and Aspiring Data Analyst. Explore projects, skills, and career insights through advanced digital twin technology.",
+  title: "Hi, I'm PearlAI! - Lovely Pearl B. Alan | Professional Digital Twin",
+  description: "Interactive AI-powered professional consultation with PearlAI - the digital twin of Lovely Pearl B. Alan. BSIT Student, Technical Leader, and Aspiring Data Analyst. Explore projects, skills, and career insights through advanced digital twin technology.",
 };
 
 export default function RootLayout({
