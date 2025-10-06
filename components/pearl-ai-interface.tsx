@@ -18,9 +18,10 @@ interface Message {
 
 interface PearlAIInterfaceProps {
   onClose?: () => void
+  initialQuestion?: string
 }
 
-export default function PearlAIInterface({ onClose }: PearlAIInterfaceProps) {
+export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -33,6 +34,7 @@ export default function PearlAIInterface({ onClose }: PearlAIInterfaceProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const hasAutoSent = useRef(false)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -50,6 +52,16 @@ export default function PearlAIInterface({ onClose }: PearlAIInterfaceProps) {
     }, 100)
     return () => clearTimeout(timer)
   }, [isTyping])
+
+  // Auto-send initial question if provided
+  useEffect(() => {
+    if (initialQuestion && !hasAutoSent.current) {
+      hasAutoSent.current = true
+      setTimeout(() => {
+        sendMessage(initialQuestion)
+      }, 500)
+    }
+  }, [initialQuestion])
 
   const quickQuestions = [
     "Tell me about your background",
@@ -123,15 +135,15 @@ export default function PearlAIInterface({ onClose }: PearlAIInterfaceProps) {
           onClick={onClose}
           variant="ghost"
           size="sm"
-          className="absolute top-4 right-4 z-[110] text-gray-400 hover:text-white hover:bg-red-500/20 rounded-full w-10 h-10 p-0 transition-all duration-300 border border-gray-600/30 hover:border-red-500/50 group bg-black/80 backdrop-blur-sm"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-[110] text-gray-400 hover:text-white hover:bg-red-500/20 rounded-full w-8 h-8 sm:w-10 sm:h-10 p-0 transition-all duration-300 border border-gray-600/30 hover:border-red-500/50 group bg-black/80 backdrop-blur-sm"
         >
-          <svg className="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </Button>
       )}
       
-      <Card className="w-full h-full bg-black/95 backdrop-blur-xl border-2 border-purple-500/30 shadow-2xl shadow-purple-500/30 rounded-3xl overflow-hidden relative flex flex-col">
+      <Card className="w-full h-full bg-black/95 backdrop-blur-xl border border-purple-500/30 sm:border-2 shadow-2xl shadow-purple-500/30 rounded-2xl sm:rounded-3xl overflow-hidden relative flex flex-col">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/15 via-pink-500/10 to-cyan-500/15 rounded-3xl pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/10 to-transparent animate-pulse pointer-events-none"></div>
         
@@ -139,49 +151,50 @@ export default function PearlAIInterface({ onClose }: PearlAIInterfaceProps) {
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-500/20 animate-pulse"></div>
         </div>
         
-        <div className="relative z-20 flex items-center p-6 pr-16 border-b border-purple-500/30 bg-black/40 backdrop-blur-sm shrink-0">
-          <div className="flex items-center space-x-4 w-full max-w-5xl mx-auto">
+        <div className="relative z-20 flex items-center p-3 sm:p-4 md:p-6 border-b border-purple-500/30 bg-black/40 backdrop-blur-sm shrink-0">
+          <div className="flex items-center space-x-3 sm:space-x-4 w-full max-w-5xl mx-auto">
             <div className="relative">
-              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-purple-400/60 shadow-xl shadow-purple-500/50 ring-2 ring-purple-500/20 bg-gray-800">
-                <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-purple-400/60 shadow-xl shadow-purple-500/50 ring-2 ring-purple-500/20 bg-gray-800">
+                <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg">
                   LP
                 </div>
               </div>
-              <div className="absolute -top-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-black flex items-center justify-center">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
+              <div className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 bg-green-400 rounded-full border-2 border-black flex items-center justify-center">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div>
               </div>
             </div>
             
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-200">digiPearl</h2>
-              <div className="flex items-center space-x-2">
-                <p className="text-sm text-purple-300">AI Digital Twin</p>
-                <span className="text-purple-400">•</span>
-                <p className="text-sm text-green-400">Neural Interface Active</p>
+            <div className="flex-1 min-w-0">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-200 truncate">Pearl.AI</h2>
+              <div className="flex items-center space-x-1.5 sm:space-x-2 text-xs sm:text-sm">
+                <p className="text-purple-300 truncate">AI Digital Twin</p>
+                <span className="text-purple-400 hidden sm:inline">•</span>
+                <p className="text-green-400 hidden sm:block truncate">Neural Interface Active</p>
               </div>
             </div>
           </div>
         </div>
 
         <CardContent className="relative z-10 p-0 flex-1 flex flex-col min-h-0">
-          <div className="flex-1 flex flex-col lg:flex-row gap-6 px-6 py-4 min-h-0 max-w-5xl mx-auto w-full">
+          <div className="flex-1 flex flex-col lg:flex-row gap-3 sm:gap-4 md:gap-6 px-3 sm:px-4 md:px-6 py-3 sm:py-4 min-h-0 max-w-5xl mx-auto w-full">
             
-            <div className="lg:w-1/3 space-y-4 flex flex-col shrink-0">
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
-                <h3 className="text-lg font-semibold text-cyan-300">Neural Queries</h3>
+            {/* Quick Questions - Hidden on mobile, shown on larger screens */}
+            <div className="hidden lg:flex lg:flex-col lg:w-1/3 space-y-3 sm:space-y-4 shrink-0">
+              <div className="flex items-center space-x-2 mb-2 sm:mb-4 md:mb-6">
+                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-cyan-300">Neural Queries</h3>
               </div>
-              <div className="space-y-3 flex-1 overflow-y-auto chat-scroll">
+              <div className="space-y-2 sm:space-y-3 flex-1 overflow-y-auto chat-scroll">
                 {quickQuestions.map((question, index) => (
                   <Button
                     key={index}
                     variant="ghost"
                     onClick={() => sendMessage(question)}
                     disabled={isLoading}
-                    className="w-full text-left justify-start h-auto p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/20 hover:from-purple-800/40 hover:to-pink-800/30 border border-purple-700/40 hover:border-purple-500/60 text-purple-100 hover:text-white rounded-xl transition-all duration-300 text-sm"
+                    className="w-full text-left justify-start h-auto p-3 sm:p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/20 hover:from-purple-800/40 hover:to-pink-800/30 border border-purple-700/40 hover:border-purple-500/60 text-purple-100 hover:text-white rounded-xl transition-all duration-300 text-xs sm:text-sm"
                   >
-                    <div className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                    <div className="flex items-center space-x-2 sm:space-x-3">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-400 rounded-full"></div>
                       <span>{question}</span>
                     </div>
                   </Button>
@@ -189,17 +202,17 @@ export default function PearlAIInterface({ onClose }: PearlAIInterfaceProps) {
               </div>
             </div>
 
-            <div className="lg:w-2/3 flex flex-col min-h-0 flex-1">
-              <div className="flex-1 mb-4 min-h-0 border border-purple-500/20 rounded-xl bg-black/20 relative">
-                <ScrollArea className="h-full w-full p-4 chat-scroll">
-                  <div className="space-y-4 pr-2">
+            <div className="w-full lg:w-2/3 flex flex-col min-h-0 flex-1">
+              <div className="flex-1 mb-3 sm:mb-3 sm:mb-4 min-h-0 border border-purple-500/20 rounded-xl bg-black/20 relative">
+                <ScrollArea className="h-full w-full p-2 sm:p-3 md:p-4 chat-scroll">
+                  <div className="space-y-3 sm:space-y-4 pr-1 sm:pr-2">
                     {messages.map((message) => (
                       <div
                         key={message.id}
                         className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
                         <div
-                          className={`max-w-[85%] p-4 rounded-2xl shadow-lg relative ${
+                          className={`max-w-[90%] sm:max-w-[85%] p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg relative ${
                             message.sender === 'user'
                               ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
                               : 'bg-black/70 backdrop-blur-sm border border-purple-500/40 text-purple-100'
@@ -263,8 +276,8 @@ export default function PearlAIInterface({ onClose }: PearlAIInterfaceProps) {
                 </ScrollArea>
               </div>
               
-              <div className="space-y-4 shrink-0">
-                <div className="flex flex-col sm:flex-row gap-3">
+              <div className="space-y-3 sm:space-y-4 shrink-0">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                   <div className="flex-1 relative">
                     <Input
                       value={currentMessage}

@@ -2,6 +2,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { LocalRAGSystem } from '@/lib/local-rag-system';
 
+// Prevent prerendering - this route needs runtime environment
+export const dynamic = 'force-dynamic';
+
 const localRAGSystem = new LocalRAGSystem();
 
 export async function POST(request: NextRequest) {
