@@ -36,7 +36,7 @@ UPSTASH_VECTOR_REST_URL=https://your-new-vector-url.upstash.io
 UPSTASH_VECTOR_REST_TOKEN=your_new_token_here
 
 # Keep your working Groq key
-GROQ_API_KEY=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
+GROQ_API_KEY=gsk_your_actual_groq_api_key_here
 ```
 
 ### Step 3: Test the Connection
