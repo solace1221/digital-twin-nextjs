@@ -172,7 +172,7 @@ export default function WelcomeToDigitalTwin() {
     { 
       title: "JPCS President", 
       badge: "Leadership Excellence",
-      description: "Elected as President of the Junior Philippine Computer Society, leading over 100 members in tech initiatives, workshops, innovation programs, and fostering a vibrant community of student developers.",
+      description: "Appointed as President of the Junior Philippine Computer Society, leading over 100 members in tech initiatives, workshops, innovation programs, and fostering a vibrant community of student developers.",
       image: "/images/college-1.jpg",
       galleryImages: ["/images/college-1.jpg", "/images/college-2.jpg", "/images/college-3.jpg"]
     },
@@ -205,9 +205,9 @@ export default function WelcomeToDigitalTwin() {
       galleryImages: ["/images/college-5.jpg", "/images/college-6.jpg", "/images/college-7.jpg"]
     },
     { 
-      title: "TechFusion Leader", 
+      title: "COIL TechFusion", 
       badge: "International Collaboration",
-      description: "One of the key leaders in organizing TechFusion with Brazil, a major international tech event bringing together students, industry experts, and innovators across continents to explore emerging technologies and digital solutions.",
+      description: "Collaborative Online International Learning - TechFusion: Global Project Management for EdTech Revolution. Served as one of the leaders in the project, where we created an online learning platform for underprivileged students and translated it into local languages - Ibanag, Ilokano, Itawes, English, Tagalog, and Portuguese.",
       image: "/images/college-6.jpg",
       galleryImages: ["/images/college-6.jpg", "/images/college-7.jpg", "/images/college-8.jpg"]
     },
@@ -241,8 +241,8 @@ export default function WelcomeToDigitalTwin() {
     },
     { 
       title: "HackTheNorth TCON 6", 
-      badge: "Tech Competition",
-      description: "Participated in HackTheNorth TCON 6, a premier technology conference and hackathon, collaborating with talented developers, tackling real-world challenges, and expanding technical expertise through hands-on innovation.",
+      badge: "Tech Seminar/Workshop",
+      description: "Participated in HackTheNorth TCON 6, a premier technology conference and seminar, collaborating with talented developers, learning cutting-edge technologies, and expanding technical expertise through hands-on workshops and knowledge-sharing sessions.",
       image: "/images/college-11.jpg",
       galleryImages: ["/images/college-11.jpg", "/images/college-12.jpg", "/images/college-1.jpg"]
     },
