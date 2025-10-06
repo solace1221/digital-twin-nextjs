@@ -1,8 +1,12 @@
 {
   "servers": {
-    "digital-twin-mcp": {
+    "digital-twin-production": {
       "type": "http",
-      "url": "http://localhost:3002/api/mcp"
+      "url": "https://digital-twin-nextjs.vercel.app/api/mcp"
+    },
+    "digital-twin-local": {
+      "type": "http",
+      "url": "http://localhost:3000/api/mcp"
     }
   }
 }
