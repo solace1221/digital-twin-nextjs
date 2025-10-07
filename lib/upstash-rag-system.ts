@@ -156,12 +156,28 @@ export class UpstashRAGSystem {
       });
 
       // Convert to search results
-      const searchResults: SearchResult[] = results.map((result: any) => ({
-        content: result.metadata?.content || '',
-        score: result.score || 0,
-        metadata: result.metadata,
-        title: result.metadata?.title || 'Information'
-      }));
+      // Handle both formats: {title, content} and {question, answer}
+      const searchResults: SearchResult[] = results.map((result: any) => {
+        const metadata = result.metadata || {};
+        
+        // Q&A format (question/answer)
+        if (metadata.question || metadata.answer) {
+          return {
+            content: metadata.answer || '',
+            score: result.score || 0,
+            metadata: result.metadata,
+            title: metadata.question || 'Q&A'
+          };
+        }
+        
+        // Standard format (title/content)
+        return {
+          content: metadata.content || '',
+          score: result.score || 0,
+          metadata: result.metadata,
+          title: metadata.title || 'Information'
+        };
+      });
 
       console.log(`Found ${searchResults.length} relevant results`);
       return searchResults;
