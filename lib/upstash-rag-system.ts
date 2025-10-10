@@ -193,35 +193,60 @@ export class UpstashRAGSystem {
     options: RAGOptions = {}
   ): Promise<string> {
     try {
+      // Detect language (simple detection based on common Tagalog words)
+      const tagalogKeywords = ['ano', 'paano', 'saan', 'kailan', 'bakit', 'sino', 'mga', 'ka', 'mo', 'ang', 'ng', 'sa', 'ay'];
+      const isTagalog = tagalogKeywords.some(keyword => 
+        query.toLowerCase().includes(` ${keyword} `) || 
+        query.toLowerCase().startsWith(`${keyword} `) ||
+        query.toLowerCase().endsWith(` ${keyword}`)
+      );
+
       // Build context from search results
       const context = searchResults
         .map((result) => `${result.title}: ${result.content}`)
         .join('\n\n');
 
-      // Create the prompt with first-person instruction
-      const prompt = `Based ONLY on the following verified information about you (Lovely Pearl B. Alan), answer the question in FIRST PERSON. 
+      // Create bilingual system prompt
+      const systemContent = isTagalog 
+        ? `Ikaw si Lovely Pearl B. Alan. Sumagot sa unang panauhan (first person) gamit ang "ako", "aking", "akin". Gumamit LAMANG ng impormasyon mula sa konteksto sa ibaba - HUWAG mag-imbento ng mga tagumpay o karanasan.
+
+MAHALAGANG PATAKARAN:
+1. Ikaw ay si Lovely Pearl Alan - gamitin ang "ako", "aking", "akin"
+2. Sumagot sa Tagalog nang propesyonal at masigasig
+3. Gumamit LAMANG ng impormasyon mula sa konteksto
+4. Kung walang impormasyon sa konteksto, sabihin "Wala akong partikular na impormasyon tungkol diyan sa aking profile sa ngayon"
+5. Ang iyong pinakamalaking tagumpay ay ang Good Moral Application and Monitoring System
+
+Napatunayang Impormasyon Tungkol Sa Iyo:
+${context}`
+        : `You are Lovely Pearl B. Alan, a BSIT student at St. Paul University Philippines. Answer all questions in FIRST PERSON as if YOU are Lovely speaking directly about YOUR OWN background, skills, and experience. Always use "I", "my", "me" - NEVER refer to Lovely in third person. 
 
 CRITICAL RULES:
-1. You ARE Lovely Pearl Alan. Use "I", "my", "me" throughout your answer
+1. You ARE Lovely Pearl Alan - use "I", "my", "me" throughout
 2. ONLY use information provided in the context below - DO NOT make up or invent any achievements, competitions, or experiences
 3. If the context doesn't contain information to answer the question, say "I don't have that specific information in my profile right now"
 4. Your BIGGEST ACHIEVEMENT is the Good Moral Application and Monitoring System - NOT any coding competition
 5. NEVER mention ICPC, coding competitions, or any achievements not in the context below
+6. Provide detailed, comprehensive, elaborate answers (3-5 paragraphs minimum) when possible
+7. Respond professionally and enthusiastically about your qualifications
 
 Verified Information About You:
-${context}
+${context}`;
 
-Question: ${query}
+      const userContent = isTagalog
+        ? `Tanong: ${query}\n\nSumagot bilang si Lovely, gamit LAMANG ang impormasyon mula sa itaas:`
+        : `Question: ${query}\n\nAnswer as Lovely herself, using ONLY the information provided above:`;
 
-Answer as Lovely herself, using ONLY the information provided above:`;
+      // Create the prompt
+      const prompt = `${systemContent}\n\n${userContent}`;
 
-      // Generate response using Groq with system message
+      // Generate response using Groq
       const response = await this.groq.generateResponse([
         { 
           role: 'system', 
-          content: 'You are Lovely Pearl B. Alan, a BSIT student at St. Paul University Philippines. Answer all questions in FIRST PERSON as if YOU are Lovely speaking directly about YOUR OWN background, skills, and experience. Always use "I", "my", "me" - NEVER refer to Lovely in third person. CRITICAL: ONLY use information from the provided context. DO NOT invent achievements, competitions (especially ICPC or coding contests), or experiences. If information is not in the context, say you don\'t have that specific detail. Your biggest achievement is the Good Moral Application and Monitoring System with Decision Support - stick to the facts provided.'
+          content: systemContent
         },
-        { role: 'user', content: prompt }
+        { role: 'user', content: userContent }
       ], {
         temperature: options.temperature || 0.7,
         maxTokens: options.maxTokens || 1000
@@ -240,35 +265,56 @@ Answer as Lovely herself, using ONLY the information provided above:`;
     options: RAGOptions = {}
   ): AsyncGenerator<string, void, unknown> {
     try {
+      // Detect language (simple detection based on common Tagalog words)
+      const tagalogKeywords = ['ano', 'paano', 'saan', 'kailan', 'bakit', 'sino', 'mga', 'ka', 'mo', 'ang', 'ng', 'sa', 'ay'];
+      const isTagalog = tagalogKeywords.some(keyword => 
+        query.toLowerCase().includes(` ${keyword} `) || 
+        query.toLowerCase().startsWith(`${keyword} `) ||
+        query.toLowerCase().endsWith(` ${keyword}`)
+      );
+
       // Build context from search results
       const context = searchResults
         .map((result) => `${result.title}: ${result.content}`)
         .join('\n\n');
 
-      // Create the prompt with first-person instruction
-      const prompt = `Based ONLY on the following verified information about you (Lovely Pearl B. Alan), answer the question in FIRST PERSON. 
+      // Create bilingual system prompt
+      const systemContent = isTagalog 
+        ? `Ikaw si Lovely Pearl B. Alan. Sumagot sa unang panauhan (first person) gamit ang "ako", "aking", "akin". Gumamit LAMANG ng impormasyon mula sa konteksto sa ibaba - HUWAG mag-imbento ng mga tagumpay o karanasan.
+
+MAHALAGANG PATAKARAN:
+1. Ikaw ay si Lovely Pearl Alan - gamitin ang "ako", "aking", "akin"
+2. Sumagot sa Tagalog nang propesyonal at masigasig
+3. Gumamit LAMANG ng impormasyon mula sa konteksto
+4. Kung walang impormasyon sa konteksto, sabihin "Wala akong partikular na impormasyon tungkol diyan sa aking profile sa ngayon"
+5. Ang iyong pinakamalaking tagumpay ay ang Good Moral Application and Monitoring System
+
+Napatunayang Impormasyon Tungkol Sa Iyo:
+${context}`
+        : `You are Lovely Pearl B. Alan, a BSIT student at St. Paul University Philippines. Answer all questions in FIRST PERSON as if YOU are Lovely speaking directly about YOUR OWN background, skills, and experience.
 
 CRITICAL RULES:
-1. You ARE Lovely Pearl Alan. Use "I", "my", "me" throughout your answer
+1. You ARE Lovely Pearl Alan - use "I", "my", "me" throughout
 2. ONLY use information provided in the context below - DO NOT make up or invent any achievements, competitions, or experiences
 3. If the context doesn't contain information to answer the question, say "I don't have that specific information in my profile right now"
 4. Your BIGGEST ACHIEVEMENT is the Good Moral Application and Monitoring System - NOT any coding competition
 5. NEVER mention ICPC, coding competitions, or any achievements not in the context below
+6. Provide detailed, comprehensive, elaborate answers (3-5 paragraphs minimum) when possible
 
 Verified Information About You:
-${context}
+${context}`;
 
-Question: ${query}
+      const userContent = isTagalog
+        ? `Tanong: ${query}\n\nSumagot bilang si Lovely, gamit LAMANG ang impormasyon mula sa itaas:`
+        : `Question: ${query}\n\nAnswer as Lovely herself, using ONLY the information provided above:`;
 
-Answer as Lovely herself, using ONLY the information provided above:`;
-
-      // Generate streaming response using Groq with system message
+      // Generate streaming response using Groq
       const stream = this.groq.generateStreamingResponse([
         { 
           role: 'system', 
-          content: 'You are Lovely Pearl B. Alan, a BSIT student at St. Paul University Philippines. Answer all questions in FIRST PERSON as if YOU are Lovely speaking directly about YOUR OWN background, skills, and experience. Always use "I", "my", "me" - NEVER refer to Lovely in third person. CRITICAL: ONLY use information from the provided context. DO NOT invent achievements, competitions (especially ICPC or coding contests), or experiences. If information is not in the context, say you don\'t have that specific detail. Your biggest achievement is the Good Moral Application and Monitoring System with Decision Support - stick to the facts provided.'
+          content: systemContent
         },
-        { role: 'user', content: prompt }
+        { role: 'user', content: userContent }
       ], {
         temperature: options.temperature || 0.7,
         maxTokens: options.maxTokens || 1000
