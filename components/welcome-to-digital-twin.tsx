@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
 import { Sparkles, Trophy, Rocket, Code, Target, Users, ChevronLeft, ChevronRight, Play, Pause, Search, Brain, Database, Zap, Code2, FileCode, Shield, Bot, ClipboardList, FileSpreadsheet, Mail, MessageSquare, Linkedin, Github, Phone, MapPin, Menu, X } from 'lucide-react'
 import PearlAIInterface from './pearl-ai-interface'
-import SkillsCarousel from './skills-carousel'
+import SkillsAccordion from './skills-accordion'
 
 export default function WelcomeToDigitalTwin() {
   const [showChatbot, setShowChatbot] = useState(false)
@@ -635,7 +635,7 @@ export default function WelcomeToDigitalTwin() {
       </section>
 
       {/* SKILLS CAROUSEL */}
-      <SkillsCarousel />
+      <SkillsAccordion />
 
       {/* PROJECTS SECTION */}
       <section id="projects" className="py-12 sm:py-16 md:py-24">
