@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
-import { Sparkles, Trophy, Rocket, Code, Target, Users, ChevronLeft, ChevronRight, Play, Pause, Search, Brain, Database, Zap, Code2, FileCode, Shield, Bot, ClipboardList, FileSpreadsheet, Mail, MessageSquare, Linkedin, Github, Phone, MapPin, Menu, X } from 'lucide-react'
+import { Sparkles, Trophy, Rocket, Code, Target, Users, ChevronLeft, ChevronRight, Play, Pause, Search, Brain, Database, Zap, Code2, FileCode, Shield, Bot, ClipboardList, FileSpreadsheet, Mail, MessageSquare, Linkedin, Github, Phone, MapPin, Menu, X, ExternalLink, Star } from 'lucide-react'
 import PearlAIInterface from './pearl-ai-interface'
 import SkillsAccordion from './skills-accordion'
 
@@ -35,6 +35,9 @@ export default function WelcomeToDigitalTwin() {
       title: "Good Moral System",
       icon: Shield,
       subtitle: "Laravel • SQL • Decision Support",
+      role: "Lead Developer & Team Lead",
+      challenge: "Manual student conduct tracking was inefficient and error-prone, requiring a scalable automated solution.",
+      solution: "Built comprehensive monitoring system with Laravel MVC architecture and SQL database with decision support algorithms.",
       description: "Comprehensive monitoring system with decision support using Laravel and SQL database management for student conduct tracking.",
       metrics: [
         { value: "500+", label: "Students" },
@@ -46,12 +49,17 @@ export default function WelcomeToDigitalTwin() {
         "Comprehensive reporting tools"
       ],
       tags: ["Laravel", "SQL", "PHP"],
-      color: "purple"
+      color: "purple",
+      github: "https://github.com/solace1221",
+      demo: null
     },
     {
       title: "Pearl.AI Digital Twin",
       icon: Bot,
       subtitle: "Next.js 15 • RAG • LLaMA 3.1",
+      role: "Solo Developer & AI Engineer",
+      challenge: "Creating an intelligent AI assistant that could answer questions about my professional background with contextual accuracy.",
+      solution: "Implemented RAG (Retrieval-Augmented Generation) system using Upstash Vector DB for semantic search and Groq/LLaMA 3.1 for intelligent responses.",
       description: "AI-powered digital twin with RAG system, vector database, and intelligent conversation capabilities powered by Groq and Upstash.",
       metrics: [
         { value: "594", label: "Vectors" },
@@ -63,12 +71,17 @@ export default function WelcomeToDigitalTwin() {
         "Real-time AI responses"
       ],
       tags: ["Next.js", "AI/ML", "Upstash"],
-      color: "pink"
+      color: "pink",
+      github: "https://github.com/solace1221/digital-twin-nextjs",
+      demo: "https://digital-twin-nextjs.vercel.app"
     },
     {
       title: "Yellow Forms Ticketing",
       icon: ClipboardList,
       subtitle: "NetBeans • MySQL • Bootstrap",
+      role: "Developer & System Designer",
+      challenge: "Campus operations relied on slow paper-based ticketing causing delays and lost requests.",
+      solution: "Developed digital ticketing system with priority routing, automated workflows, and real-time tracking using NetBeans and MySQL.",
       description: "Efficient ticketing and management system streamlining organizational workflows and communication for campus operations.",
       metrics: [
         { value: "80%", label: "Faster" },
@@ -80,12 +93,17 @@ export default function WelcomeToDigitalTwin() {
         "Analytics and reporting"
       ],
       tags: ["NetBeans", "MySQL", "Bootstrap"],
-      color: "purple"
+      color: "purple",
+      github: "https://github.com/solace1221",
+      demo: null
     },
     {
       title: "Tuguegarao City Website",
       icon: Code,
       subtitle: "HTML • CSS • JavaScript • Bootstrap",
+      role: "Frontend Developer",
+      challenge: "City needed modern, responsive website to showcase government services and tourism information to residents and visitors.",
+      solution: "Designed and developed fully responsive website using Bootstrap framework with interactive UI and optimized performance.",
       description: "Official city website showcasing local government services, tourism information, and community resources with responsive design.",
       metrics: [
         { value: "100%", label: "Responsive" },
@@ -97,12 +115,17 @@ export default function WelcomeToDigitalTwin() {
         "Bootstrap framework integration"
       ],
       tags: ["HTML", "CSS", "JavaScript"],
-      color: "pink"
+      color: "pink",
+      github: "https://github.com/solace1221",
+      demo: null
     },
     {
       title: "Student Monitoring System",
       icon: Users,
       subtitle: "Laravel • Attendance Tracking",
+      role: "Full-Stack Developer",
+      challenge: "Manual attendance tracking was time-consuming and lacked real-time reporting capabilities for administrators and parents.",
+      solution: "Created automated attendance system with Laravel, featuring real-time updates, automated notifications, and comprehensive analytics.",
       description: "Comprehensive attendance monitoring system for tracking student presence, generating reports, and managing academic attendance records.",
       metrics: [
         { value: "1000+", label: "Students" },
@@ -114,12 +137,17 @@ export default function WelcomeToDigitalTwin() {
         "Parent notification system"
       ],
       tags: ["Laravel", "PHP", "MySQL"],
-      color: "purple"
+      color: "purple",
+      github: "https://github.com/solace1221",
+      demo: null
     },
     {
       title: "Priceless Service",
       icon: Sparkles,
       subtitle: "Photoshop • Adobe Premiere",
+      role: "Video Editor & Creative Director",
+      challenge: "Capturing and presenting the meaningful journey of student-servant leaders through compelling visual storytelling.",
+      solution: "Produced professional 15-minute documentary using Adobe Premiere and Photoshop, incorporating interviews, motion graphics, and narrative storytelling.",
       description: "Video documentary showcasing 'A Life of a Paulinian Student-Servant Leader' - capturing the journey, dedication, and impact of student leadership.",
       metrics: [
         { value: "15min", label: "Duration" },
@@ -131,7 +159,9 @@ export default function WelcomeToDigitalTwin() {
         "Compelling storytelling"
       ],
       tags: ["Photoshop", "Premiere", "Design"],
-      color: "pink"
+      color: "pink",
+      github: null,
+      demo: null
     }
   ]
 
@@ -259,7 +289,7 @@ export default function WelcomeToDigitalTwin() {
     if (!isJourneyAutoPlaying) return
     const interval = setInterval(() => {
       setCurrentJourneySlide((prev) => (prev + 1) % journeyMilestones.length)
-    }, 8000)
+    }, 15000)
     return () => clearInterval(interval)
   }, [isJourneyAutoPlaying, journeyMilestones.length])
 
@@ -669,9 +699,32 @@ export default function WelcomeToDigitalTwin() {
                               <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
                               <p className={`text-${project.color}-300 text-xs uppercase tracking-wider mb-4`}>{project.subtitle}</p>
                               
-                              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                                {project.description}
-                              </p>
+                              {/* Role */}
+                              <div className="mb-4">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <Star className="w-4 h-4 text-blue-400" />
+                                  <span className="text-xs uppercase tracking-wider text-blue-300 font-semibold">Role</span>
+                                </div>
+                                <p className="text-gray-300 text-sm">{project.role}</p>
+                              </div>
+
+                              {/* Challenge */}
+                              <div className="mb-4">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <Target className="w-4 h-4 text-coral-400" />
+                                  <span className="text-xs uppercase tracking-wider text-coral-300 font-semibold">Challenge</span>
+                                </div>
+                                <p className="text-gray-400 text-sm leading-relaxed">{project.challenge}</p>
+                              </div>
+
+                              {/* Solution */}
+                              <div className="mb-6">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <Code className="w-4 h-4 text-blue-400" />
+                                  <span className="text-xs uppercase tracking-wider text-blue-300 font-semibold">Solution</span>
+                                </div>
+                                <p className="text-gray-400 text-sm leading-relaxed">{project.solution}</p>
+                              </div>
 
                               {/* Impact Metrics */}
                               <div className="grid grid-cols-2 gap-3 mb-6">
@@ -684,7 +737,7 @@ export default function WelcomeToDigitalTwin() {
                               </div>
 
                               {/* Key Features */}
-                              <div className="space-y-2 mb-4 text-sm text-gray-300">
+                              <div className="space-y-2 mb-6 text-sm text-gray-300">
                                 {project.features.map((feature, idx) => (
                                   <div key={idx} className="flex items-start">
                                     <span className={`text-${project.color}-400 mr-2`}>✓</span>
@@ -693,10 +746,37 @@ export default function WelcomeToDigitalTwin() {
                                 ))}
                               </div>
                               
-                              <div className="flex flex-wrap gap-2">
+                              {/* Tags */}
+                              <div className="flex flex-wrap gap-2 mb-6">
                                 {project.tags.map((tag, idx) => (
                                   <Badge key={idx} className={`bg-${idx % 2 === 0 ? project.color : project.color === 'purple' ? 'pink' : 'purple'}-500/20 border border-${idx % 2 === 0 ? project.color : project.color === 'purple' ? 'pink' : 'purple'}-500/30 text-${idx % 2 === 0 ? project.color : project.color === 'purple' ? 'pink' : 'purple'}-300`}>{tag}</Badge>
                                 ))}
+                              </div>
+
+                              {/* GitHub & Demo Links */}
+                              <div className="flex gap-3">
+                                {project.github && (
+                                  <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-blue-500/50 rounded-xl text-sm text-white transition-all duration-300 group"
+                                  >
+                                    <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                                    <span>GitHub</span>
+                                  </a>
+                                )}
+                                {project.demo && (
+                                  <a
+                                    href={project.demo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/40 hover:border-blue-500/60 rounded-xl text-sm text-blue-300 hover:text-blue-200 transition-all duration-300 group"
+                                  >
+                                    <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                                    <span>Live Demo</span>
+                                  </a>
+                                )}
                               </div>
                             </div>
                           </div>
