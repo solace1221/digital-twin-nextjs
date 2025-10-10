@@ -355,13 +355,13 @@ export default function WelcomeToDigitalTwin() {
 
       {/* HERO LANDING PAGE - Centered Dark Design */}
       <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Animated Background */}
+        {/* Simplified Background - Subtle accent only */}
         <div className="absolute inset-0 z-0">
-          {/* Gradient orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
+          {/* Reduced gradient orbs - smaller, more subtle */}
+          <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
+          {/* Simplified grid pattern - more subtle */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.01)_1px,transparent_1px)] bg-[size:120px_120px] [mask-image:radial-gradient(ellipse_70%_40%_at_50%_50%,black,transparent)]"></div>
         </div>
 
         <div className="container mx-auto px-8 max-w-5xl pt-32 pb-20 relative z-10">
