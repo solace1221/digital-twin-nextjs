@@ -369,7 +369,7 @@ export default function WelcomeToDigitalTwin() {
             {/* Pearl.AI Branding */}
             <div className="space-y-4">
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-tight">
-                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+                <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
                   Pearl.AI
                 </span>
               </h1>
@@ -382,13 +382,13 @@ export default function WelcomeToDigitalTwin() {
             <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed px-4">
               BSIT Student building intelligent systems with clean code and data-driven insights.
               <br />
-              <span className="text-purple-300">Ask me anything about my journey, projects, and technical expertise.</span>
+              <span className="text-blue-300">Ask me anything about my journey, projects, and technical expertise.</span>
             </p>
 
             {/* Trust Badge */}
             <div className="flex justify-center">
-              <div className="bg-white/5 backdrop-blur-sm border border-purple-500/30 rounded-full px-6 py-2 text-sm text-gray-300 flex items-center gap-2">
-                <Bot className="w-4 h-4 text-purple-400" />
+              <div className="bg-white/5 backdrop-blur-sm border border-blue-500/30 rounded-full px-6 py-2 text-sm text-gray-300 flex items-center gap-2">
+                <Bot className="w-4 h-4 text-blue-400" />
                 <span>Powered by RAG + LLaMA 3.1 | 135+ Q&A Knowledge Base</span>
               </div>
             </div>
@@ -396,11 +396,11 @@ export default function WelcomeToDigitalTwin() {
             {/* Feature badges */}
             <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-sm">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                 <span className="text-gray-300">100+ Members Led</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-coral-500 rounded-full"></div>
                 <span className="text-gray-300">Available for Opportunities</span>
               </div>
             </div>
@@ -409,7 +409,7 @@ export default function WelcomeToDigitalTwin() {
             <div className="pt-8">
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-10 py-6 text-lg font-bold rounded-full shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-10 py-6 text-lg font-bold rounded-full shadow-2xl shadow-blue-500/50 hover:shadow-blue-500/70 transition-all duration-300 hover:scale-105"
                 onClick={() => setShowChatbot(true)}
               >
                 Explore Pearl.AI
@@ -425,35 +425,35 @@ export default function WelcomeToDigitalTwin() {
               <div className="flex flex-wrap justify-center gap-3">
                 <button
                   onClick={() => openChatbotWithQuestion("What's your biggest achievement?")}
-                  className="group bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
+                  className="group bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
                 >
                   <Trophy className="w-4 h-4" />
                   <span>What's your biggest achievement?</span>
                 </button>
                 <button
                   onClick={() => openChatbotWithQuestion("Tell me about your projects")}
-                  className="group bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
+                  className="group bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
                 >
                   <Rocket className="w-4 h-4" />
                   <span>Tell me about your projects</span>
                 </button>
                 <button
                   onClick={() => openChatbotWithQuestion("What technologies do you know?")}
-                  className="group bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
+                  className="group bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
                 >
                   <Code className="w-4 h-4" />
                   <span>What technologies do you know?</span>
                 </button>
                 <button
                   onClick={() => openChatbotWithQuestion("Why should we hire you?")}
-                  className="group bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
+                  className="group bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
                 >
                   <Target className="w-4 h-4" />
                   <span>Why should we hire you?</span>
                 </button>
                 <button
                   onClick={() => openChatbotWithQuestion("Tell me about your leadership")}
-                  className="group bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
+                  className="group bg-white/5 hover:bg-blue-500/20 border border-white/10 hover:border-blue-500/50 rounded-full px-5 py-2.5 text-sm text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2"
                 >
                   <Users className="w-4 h-4" />
                   <span>Tell me about your leadership</span>
