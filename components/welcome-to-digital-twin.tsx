@@ -152,8 +152,8 @@ export default function WelcomeToDigitalTwin() {
 
   const getTechColorClasses = (color: 'purple' | 'pink' | 'cyan') => {
     const colors = {
-      purple: { gradient: 'from-purple-500 via-purple-600 to-pink-500', border: 'border-purple-500/40', text: 'text-purple-300', glow: 'group-hover:shadow-purple-500/30', bg: 'bg-purple-500/10' },
-      pink: { gradient: 'from-pink-500 via-pink-600 to-purple-500', border: 'border-pink-500/40', text: 'text-pink-300', glow: 'group-hover:shadow-pink-500/30', bg: 'bg-pink-500/10' },
+      purple: { gradient: 'from-blue-500 via-blue-600 to-cyan-500', border: 'border-blue-500/40', text: 'text-blue-300', glow: 'group-hover:shadow-blue-500/30', bg: 'bg-blue-500/10' },
+      pink: { gradient: 'from-coral-500 via-coral-600 to-blue-500', border: 'border-coral-500/40', text: 'text-coral-300', glow: 'group-hover:shadow-coral-500/30', bg: 'bg-coral-500/10' },
       cyan: { gradient: 'from-blue-500 via-blue-600 to-cyan-500', border: 'border-blue-500/40', text: 'text-blue-300', glow: 'group-hover:shadow-blue-500/30', bg: 'bg-blue-500/10' }
     }
     return colors[color]
@@ -271,8 +271,8 @@ export default function WelcomeToDigitalTwin() {
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             {/* Logo Section */}
             <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-purple-500/30">
-                <div className="w-full h-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-blue-500/30">
+                <div className="w-full h-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                   <span className="text-white font-bold text-base sm:text-lg">LP</span>
                 </div>
               </div>
@@ -358,8 +358,8 @@ export default function WelcomeToDigitalTwin() {
         {/* Animated Background */}
         <div className="absolute inset-0 z-0">
           {/* Gradient orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
           {/* Grid pattern overlay */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
         </div>
@@ -464,7 +464,7 @@ export default function WelcomeToDigitalTwin() {
             {/* Digital Twin Technology Stack - Carousel */}
             <div className="pt-16">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Digital Twin Technology Stack</h2>
+                <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Digital Twin Technology Stack</h2>
                 <p className="text-gray-400 text-lg">Technologies powering the AI digital twin experience</p>
               </div>
               
@@ -508,11 +508,11 @@ export default function WelcomeToDigitalTwin() {
                     <button 
                       key={index} 
                       onClick={() => { setIsTechAutoPlaying(false); setCurrentTechSlide(index) }} 
-                      className={`transition-all duration-300 rounded-full ${
-                        currentTechSlide === index 
-                          ? 'w-12 h-3 bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50' 
-                          : 'w-3 h-3 bg-white/20 hover:bg-white/40'
-                      }`} 
+                    className={`transition-all duration-300 rounded-full ${
+                      currentTechSlide === index 
+                        ? 'w-12 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/50' 
+                        : 'w-3 h-3 bg-white/20 hover:bg-white/40'
+                    }`}
                     />
                   ))}
                 </div>
@@ -539,7 +539,7 @@ export default function WelcomeToDigitalTwin() {
       {/* MY COLLEGE JOURNEY SECTION */}
       <section id="about" className="relative w-full min-h-screen h-auto md:h-screen overflow-hidden bg-black py-12 md:py-0">
         <div className="text-center pt-8 md:pt-12 pb-6 md:pb-8 relative z-20 px-4">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             My College Journey
           </h2>
           <p className="text-gray-400 text-base sm:text-lg">A timeline of growth, leadership, and memorable moments</p>
@@ -579,8 +579,8 @@ export default function WelcomeToDigitalTwin() {
               <div className="relative h-full">
                 {/* Left: Text Content - Positioned in lower-left */}
                 <div className="absolute left-4 sm:left-6 md:left-8 lg:left-16 bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 max-w-[calc(100%-2rem)] sm:max-w-xl md:max-w-2xl text-white space-y-3 sm:space-y-4 md:space-y-6 z-20">
-                  <div className="inline-block px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm border border-purple-500/50 rounded-full">
-                    <span className="text-xs sm:text-sm font-semibold text-purple-200">{milestone.badge}</span>
+                  <div className="inline-block px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 backdrop-blur-sm border border-blue-500/50 rounded-full">
+                    <span className="text-xs sm:text-sm font-semibold text-blue-200">{milestone.badge}</span>
                   </div>
                   
                   <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
@@ -593,7 +593,7 @@ export default function WelcomeToDigitalTwin() {
 
                   <button 
                     onClick={() => setShowChatbot(true)}
-                    className="group mt-3 sm:mt-4 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 flex items-center gap-2 w-fit text-sm sm:text-base"
+                    className="group mt-3 sm:mt-4 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50 flex items-center gap-2 w-fit text-sm sm:text-base"
                   >
                     <span>Know More</span>
                     <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform" />
@@ -611,7 +611,7 @@ export default function WelcomeToDigitalTwin() {
                 onClick={() => { setIsJourneyAutoPlaying(false); setCurrentJourneySlide(index) }}
                 className={`transition-all duration-300 rounded-full ${
                   index === currentJourneySlide
-                    ? 'w-8 sm:w-10 md:w-12 h-2 sm:h-2.5 md:h-3 bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/50'
+                    ? 'w-8 sm:w-10 md:w-12 h-2 sm:h-2.5 md:h-3 bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/50'
                     : 'w-2 sm:w-2.5 md:w-3 h-2 sm:h-2.5 md:h-3 bg-white/30 hover:bg-white/50'
                 }`}
               />
@@ -641,7 +641,7 @@ export default function WelcomeToDigitalTwin() {
       <section id="projects" className="py-12 sm:py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               Featured Projects
             </h2>
             <p className="text-gray-400 text-base sm:text-lg">Showcasing technical expertise and innovative solutions</p>
@@ -718,7 +718,7 @@ export default function WelcomeToDigitalTwin() {
                     onClick={() => setCurrentProjectSlide(index)}
                     className={`transition-all duration-300 rounded-full ${
                       index === currentProjectSlide
-                        ? 'w-12 h-3 bg-gradient-to-r from-purple-500 to-pink-500'
+                        ? 'w-12 h-3 bg-gradient-to-r from-blue-500 to-cyan-500'
                         : 'w-3 h-3 bg-white/20 hover:bg-white/40'
                     }`}
                   />
@@ -733,7 +733,7 @@ export default function WelcomeToDigitalTwin() {
       <footer id="contact" className="py-12 sm:py-16 md:py-24 border-t border-white/5">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               Let's Connect
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base px-4">
@@ -743,33 +743,33 @@ export default function WelcomeToDigitalTwin() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {/* Email */}
-            <div className="bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 text-center hover:border-purple-500/30 hover:bg-white/10 transition-all duration-300 group">
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 text-center hover:border-blue-500/30 hover:bg-white/10 transition-all duration-300 group">
               <div className="flex justify-center mb-4">
-                <div className="p-3 bg-purple-500/20 rounded-full group-hover:bg-purple-500/30 transition-all">
-                  <Mail className="w-6 h-6 text-purple-400" />
+                <div className="p-3 bg-blue-500/20 rounded-full group-hover:bg-blue-500/30 transition-all">
+                  <Mail className="w-6 h-6 text-blue-400" />
                 </div>
               </div>
               <h4 className="text-white font-bold mb-2">Email</h4>
-              <a href="mailto:lovelyalan692@gmail.com" className="text-gray-400 hover:text-purple-400 transition-colors text-sm break-all">
+              <a href="mailto:lovelyalan692@gmail.com" className="text-gray-400 hover:text-blue-400 transition-colors text-sm break-all">
                 lovelyalan692@gmail.com
               </a>
             </div>
 
             {/* Phone */}
-            <div className="bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 text-center hover:border-purple-500/30 hover:bg-white/10 transition-all duration-300 group">
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 text-center hover:border-coral-500/30 hover:bg-white/10 transition-all duration-300 group">
               <div className="flex justify-center mb-4">
-                <div className="p-3 bg-pink-500/20 rounded-full group-hover:bg-pink-500/30 transition-all">
-                  <Phone className="w-6 h-6 text-pink-400" />
+                <div className="p-3 bg-coral-500/20 rounded-full group-hover:bg-coral-500/30 transition-all">
+                  <Phone className="w-6 h-6 text-coral-400" />
                 </div>
               </div>
               <h4 className="text-white font-bold mb-2">Phone</h4>
-              <a href="tel:+639686452130" className="text-gray-400 hover:text-pink-400 transition-colors text-sm">
+              <a href="tel:+639686452130" className="text-gray-400 hover:text-coral-400 transition-colors text-sm">
                 +63 968 645 2130
               </a>
             </div>
 
             {/* Location */}
-            <div className="bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 text-center hover:border-purple-500/30 hover:bg-white/10 transition-all duration-300 group">
+            <div className="bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/10 text-center hover:border-blue-500/30 hover:bg-white/10 transition-all duration-300 group">
               <div className="flex justify-center mb-4">
                 <div className="p-3 bg-blue-500/20 rounded-full group-hover:bg-blue-500/30 transition-all">
                   <MapPin className="w-6 h-6 text-blue-400" />
@@ -797,17 +797,17 @@ export default function WelcomeToDigitalTwin() {
               href="https://github.com/solace1221" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group bg-white/5 backdrop-blur-xl rounded-full p-4 border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all duration-300"
+              className="group bg-white/5 backdrop-blur-xl rounded-full p-4 border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300"
               aria-label="GitHub Profile"
             >
-              <Github className="w-6 h-6 text-gray-400 group-hover:text-purple-400 transition-colors" />
+              <Github className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors" />
             </a>
             <a 
               href="mailto:lovelyalan692@gmail.com"
-              className="group bg-white/5 backdrop-blur-xl rounded-full p-4 border border-white/10 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all duration-300"
+              className="group bg-white/5 backdrop-blur-xl rounded-full p-4 border border-white/10 hover:border-coral-500/50 hover:bg-coral-500/10 transition-all duration-300"
               aria-label="Send Email"
             >
-              <Mail className="w-6 h-6 text-gray-400 group-hover:text-pink-400 transition-colors" />
+              <Mail className="w-6 h-6 text-gray-400 group-hover:text-coral-400 transition-colors" />
             </a>
           </div>
 
@@ -818,11 +818,11 @@ export default function WelcomeToDigitalTwin() {
                 © {new Date().getFullYear()} Lovely Pearl Alan. All rights reserved.
               </p>
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm">
-                <a href="#hero" className="text-gray-400 hover:text-purple-400 transition-colors">Home</a>
-                <a href="#about" className="text-gray-400 hover:text-purple-400 transition-colors">About</a>
-                <a href="#skills" className="text-gray-400 hover:text-purple-400 transition-colors">Skills</a>
-                <a href="#projects" className="text-gray-400 hover:text-purple-400 transition-colors">Projects</a>
-                <a href="#contact" className="text-gray-400 hover:text-purple-400 transition-colors">Contact</a>
+                <a href="#hero" className="text-gray-400 hover:text-blue-400 transition-colors">Home</a>
+                <a href="#about" className="text-gray-400 hover:text-blue-400 transition-colors">About</a>
+                <a href="#skills" className="text-gray-400 hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#projects" className="text-gray-400 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#contact" className="text-gray-400 hover:text-blue-400 transition-colors">Contact</a>
               </div>
             </div>
             <div className="text-center mt-4">
