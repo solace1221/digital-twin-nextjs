@@ -29,29 +29,46 @@ export class UpstashRAGSystem {
 
   async initialize(): Promise<void> {
     try {
-      console.log('Initializing Upstash-native RAG system...');
+      console.log('[RAG System] Initializing Upstash-native RAG system...');
+      
+      // Validate environment variables
+      if (!process.env.UPSTASH_VECTOR_REST_URL) {
+        throw new Error('UPSTASH_VECTOR_REST_URL is not set');
+      }
+      if (!process.env.UPSTASH_VECTOR_REST_TOKEN) {
+        throw new Error('UPSTASH_VECTOR_REST_TOKEN is not set');
+      }
+      if (!process.env.GROQ_API_KEY) {
+        throw new Error('GROQ_API_KEY is not set');
+      }
       
       // Initialize Upstash Vector with environment variables
+      console.log('[RAG System] Connecting to Upstash Vector...');
       this.vectorIndex = new Index({
-        url: process.env.UPSTASH_VECTOR_REST_URL!,
-        token: process.env.UPSTASH_VECTOR_REST_TOKEN!,
+        url: process.env.UPSTASH_VECTOR_REST_URL,
+        token: process.env.UPSTASH_VECTOR_REST_TOKEN,
       });
 
       // Check current vector count
+      console.log('[RAG System] Checking vector database...');
       const info = await this.vectorIndex.info();
       const currentCount = info.vectorCount || 0;
-      console.log(`Current vectors in database: ${currentCount}`);
+      console.log(`[RAG System] Current vectors in database: ${currentCount}`);
 
       // Load profile data if database is empty
       if (currentCount === 0) {
-        console.log('Database empty, loading profile data...');
+        console.log('[RAG System] Database empty, loading profile data...');
         await this.loadProfileData();
       }
 
       this.isInitialized = true;
-      console.log('Upstash RAG system initialized successfully');
+      console.log('[RAG System] ✅ Initialization complete');
     } catch (error) {
-      console.error('Error initializing Upstash RAG system:', error);
+      console.error('[RAG System] ❌ Initialization failed:', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      });
+      this.isInitialized = false;
       throw error;
     }
   }

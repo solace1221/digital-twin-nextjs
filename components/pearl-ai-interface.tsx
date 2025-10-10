@@ -94,11 +94,29 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
         body: JSON.stringify({ query: content })
       })
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-
       const data = await response.json()
+      
+      // Handle errors even if response status is 200
+      if (!response.ok || data.error || !data.success) {
+        console.error('API Error:', {
+          status: response.status,
+          error: data.error,
+          message: data.message,
+          timestamp: data.timestamp
+        })
+
+        let errorMsg = "I apologize, but I'm experiencing technical difficulties. "
+        
+        if (response.status === 503) {
+          errorMsg += "The knowledge database is currently unavailable. Please try again in a few moments."
+        } else if (data.message) {
+          errorMsg += data.message
+        } else {
+          errorMsg += "Please try asking another question or refresh the page."
+        }
+
+        throw new Error(errorMsg)
+      }
       
       setTimeout(() => {
         const aiMessage: Message = {
@@ -113,11 +131,16 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
         setIsLoading(false)
       }, 1500)
     } catch (error) {
-      console.error('Error sending message:', error)
+      console.error('Chat Error Details:', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        query: content,
+        timestamp: new Date().toISOString()
+      })
+      
       setTimeout(() => {
         const errorMessage: Message = {
           id: (Date.now() + 2).toString(),
-          content: 'I apologize, but I\'m experiencing technical difficulties. Please ensure the development server is running and try again.',
+          content: error instanceof Error ? error.message : "I apologize, but I'm experiencing technical difficulties. Please try asking another question.",
           sender: 'pearl',
           timestamp: new Date()
         }

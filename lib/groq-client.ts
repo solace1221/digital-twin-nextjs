@@ -26,10 +26,15 @@ export class GroqLLMClient {
   };
 
   constructor(apiKey?: string, model: string = 'llama-3.1-8b-instant') {
+    const key = apiKey || process.env.GROQ_API_KEY;
+    if (!key) {
+      throw new Error('GROQ_API_KEY is required but not provided');
+    }
     this.groq = new Groq({
-      apiKey: apiKey || process.env.GROQ_API_KEY
+      apiKey: key
     });
     this.model = model;
+    console.log('[Groq Client] Initialized with model:', model);
   }
 
   async generateResponse(
@@ -37,6 +42,7 @@ export class GroqLLMClient {
     options: StreamingOptions = {}
   ): Promise<string> {
     try {
+      console.log('[Groq Client] Generating response with model:', this.model);
       const response = await this.groq.chat.completions.create({
         messages: messages as any,
         model: this.model,
@@ -52,11 +58,32 @@ export class GroqLLMClient {
         this.usageStats.completionTokens += response.usage.completion_tokens;
         this.usageStats.totalTokens += response.usage.total_tokens;
         this.usageStats.cost += this.calculateCost(response.usage);
+        console.log('[Groq Client] Response generated, tokens used:', response.usage.total_tokens);
       }
 
-      return response.choices[0]?.message?.content || '';
-    } catch (error) {
-      console.error('Error generating response:', error);
+      const content = response.choices[0]?.message?.content;
+      if (!content) {
+        throw new Error('No content returned from Groq API');
+      }
+
+      return content;
+    } catch (error: any) {
+      console.error('[Groq Client] Error details:', {
+        message: error?.message,
+        status: error?.status,
+        code: error?.code,
+        type: error?.type
+      });
+      
+      // Provide more specific error messages
+      if (error?.status === 401) {
+        throw new Error('Groq API authentication failed. Please check your API key.');
+      } else if (error?.status === 429) {
+        throw new Error('Groq API rate limit exceeded. Please try again in a moment.');
+      } else if (error?.status === 503) {
+        throw new Error('Groq API is temporarily unavailable. Please try again later.');
+      }
+      
       throw new Error(`Groq API error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }

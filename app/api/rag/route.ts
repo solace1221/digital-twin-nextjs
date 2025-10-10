@@ -10,34 +10,52 @@ export async function POST(request: NextRequest) {
     const { query, options = {} } = body;
 
     if (!query || typeof query !== 'string') {
+      console.error('Invalid query parameter:', { query, type: typeof query });
       return NextResponse.json(
-        { error: 'Query is required and must be a string' },
+        { 
+          success: false,
+          error: 'Query is required and must be a string',
+          timestamp: new Date().toISOString()
+        },
         { status: 400 }
       );
     }
 
-    console.log(`Processing RAG query: ${query}`);
+    console.log(`[RAG API] Processing query: "${query}"`);
+    console.log('[RAG API] Environment check:', {
+      hasUpstashUrl: !!process.env.UPSTASH_VECTOR_REST_URL,
+      hasUpstashToken: !!process.env.UPSTASH_VECTOR_REST_TOKEN,
+      hasGroqKey: !!process.env.GROQ_API_KEY
+    });
 
     // Try to initialize RAG system if not already done
     let ragSystemReady = false;
     if (!ragSystem['isInitialized']) {
       try {
+        console.log('[RAG API] Initializing RAG system...');
         await ragSystem.initialize();
         ragSystemReady = true;
+        console.log('[RAG API] RAG system initialized successfully');
       } catch (initError) {
-        console.error('RAG system initialization failed:', initError);
+        console.error('[RAG API] RAG system initialization failed:', {
+          error: initError instanceof Error ? initError.message : 'Unknown error',
+          stack: initError instanceof Error ? initError.stack : undefined
+        });
         ragSystemReady = false;
       }
     } else {
       ragSystemReady = true;
+      console.log('[RAG API] RAG system already initialized');
     }
 
     // Check if RAG system is ready
     if (!ragSystemReady) {
+      console.error('[RAG API] RAG system not ready, returning 503');
       return NextResponse.json(
         {
+          success: false,
           error: 'RAG system not available',
-          message: 'Digital twin data cannot be accessed due to database connection issues. Please check Upstash Vector credentials.',
+          message: 'The AI knowledge base is temporarily unavailable. This might be due to database connection issues or missing environment variables. Please try again in a moment.',
           query,
           timestamp: new Date().toISOString()
         },
@@ -46,7 +64,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Execute the query
+    console.log('[RAG API] Executing query...');
     const result = await ragSystem.queryWithResponse(query, options);
+    console.log('[RAG API] Query executed successfully:', {
+      resultsCount: result.searchResults?.length || 0,
+      hasResponse: !!result.response
+    });
 
     return NextResponse.json({
       success: true,
@@ -58,12 +81,17 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('RAG query error:', error);
+    console.error('[RAG API] Query error:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      timestamp: new Date().toISOString()
+    });
     
     return NextResponse.json(
       { 
+        success: false,
         error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.',
         timestamp: new Date().toISOString()
       },
       { status: 500 }
