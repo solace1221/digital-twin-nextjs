@@ -2,7 +2,7 @@
   "servers": {
     "digital-twin-production": {
       "type": "http",
-      "url": "https://digital-twin-nextjs.vercel.app/api/mcp"
+      "url": "https://digital-twin-nextjs-rdii.vercel.app/api/mcp"
     },
     "digital-twin-local": {
       "type": "http",
