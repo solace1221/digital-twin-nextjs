@@ -6,7 +6,7 @@
     "title": "BSIT Student – Web & App Development | Aspiring Data Analyst",
     "location": "Tuguegarao City, Cagayan, Philippines",
     "summary": "Motivated and detail-oriented BSIT student majoring in Web and App Development at St. Paul University Philippines. Strong foundations in database management, programming, and front-end development. Recognized as a President's Lister with proven leadership experience through active involvement in student organizations. Passionate about leveraging data and technology to solve real-world challenges.",
-    "elevator_pitch": "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I aim to grow into a Data Analyst role where I can apply my skills in data-driven decision-making.",
+    "elevator_pitch": "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I recently completed an AI Data Analyst workshop and aim to grow into a Data Analyst role where I can apply my skills in data-driven decision-making using AI-powered tools.",
     "contact": {
       "email": "lovelyalan@spup.edu.ph",
       "linkedin": "https://www.linkedin.com/in/lovely-pearl-alan-62bbb2311/",
@@ -479,11 +479,11 @@
     }
   ],
   "career_goals": {
-    "short_term": "Secure an internship or entry-level role in data analytics or software development",
-    "long_term": "Pursue a career as a Data Analyst or Software Engineer specializing in web and data systems",
+    "short_term": "Secure an internship or entry-level role in data analytics",
+    "long_term": "Pursue a career as a Data Analyst specializing in AI-powered data analysis and insights",
     "learning_focus": [
       "Data Analytics",
-      "Web Application Development",
+      "AI Data Analysis Tools",
       "Database Optimization"
     ],
     "industries_interested": [
@@ -842,12 +842,12 @@
       "id": "career_goals",
       "title": "Career Goals",
       "type": "career",
-      "content": "My short-term goal is to secure an internship in data analytics where I can gain hands-on experience and build my professional network. I want to learn from experienced professionals and apply my technical skills in real-world scenarios. Long-term, I aspire to become a Data Analyst or Software Engineer, using my technical skills and analytical thinking to contribute to data-driven decision making in organizations. I'm passionate about leveraging data and technology to solve real-world challenges, and I believe my strong academic foundation combined with practical experience will help me make meaningful contributions to any team I join.",
+      "content": "My primary career goal is to become a Data Analyst, where I can apply my technical skills and analytical mindset to solve complex problems through data. I recently completed an AI Data Analyst workshop which reinforced my passion for this career path and gave me hands-on experience with AI-powered data analysis tools. Short-term, I want to secure an internship in data analytics where I can gain hands-on experience and build my professional network. I want to learn from experienced professionals and apply my technical skills in real-world scenarios. Long-term, I aspire to grow into a senior data analyst or data science role, using data and AI to drive informed decision-making in organizations. I'm passionate about leveraging data and AI technology to solve real-world challenges, and I believe my strong academic foundation combined with practical experience from the AI workshop will help me make meaningful contributions to any team I join.",
       "metadata": {
         "category": "career",
         "tags": [
           "data_analyst",
-          "software_engineer",
+          "ai_workshop",
           "internship",
           "goals"
         ]
@@ -890,7 +890,7 @@
       "personal": [
         {
           "question": "Tell me about yourself",
-          "answer": "Hi! I'm Lovely Pearl Alan, a 21-year-old BSIT student at St. Paul University Philippines, majoring in Web and App Development. I'm currently in my final year and set to graduate in 2026. I've been recognized as a President's Lister for my academic performance, with most of my grades ranging from 1.00 to 1.75 - including three perfect 1.00s in Information Management, Object Oriented Programming, and Strategic Planning-ERP. Beyond academics, I'm actively involved in leadership. I currently serve as President of the Junior Philippine Computer Society, leading 17 officers and over 100 members, and I'm also Executive Secretary of The Paulinian Student Government - our university's highest governing student body. What really excites me is the intersection of data and technology. Through my capstone project, I built a complete web application using Laravel and MySQL, and I led an international COIL project with Brazil creating a multilingual learning platform for marginalized students. I'm passionate about using my technical skills to solve real-world problems, and I'm actively seeking opportunities to grow as a Data Analyst or Software Engineer.",
+          "answer": "Hi! I'm Lovely Pearl Alan, a 21-year-old BSIT student at St. Paul University Philippines, majoring in Web and App Development. I'm currently in my final year and set to graduate in 2026. I've been recognized as a President's Lister for my academic performance, with most of my grades ranging from 1.00 to 1.75 - including three perfect 1.00s in Information Management, Object Oriented Programming, and Strategic Planning-ERP. Beyond academics, I'm actively involved in leadership. I currently serve as President of the Junior Philippine Computer Society, leading 17 officers and over 100 members, and I'm also Executive Secretary of The Paulinian Student Government - our university's highest governing student body. What really excites me is data analytics and AI. I recently completed an AI Data Analyst workshop which gave me hands-on experience with AI-powered data analysis tools and reinforced my passion for this field. Through my capstone project, I built a complete web application using Laravel and MySQL, and I led an international COIL project with Brazil creating a multilingual learning platform. I'm passionate about using my technical skills and data to solve real-world problems, and I'm actively seeking opportunities to grow as a Data Analyst.",
           "category": "personal",
           "added_date": "2025-10-04T20:20:47.090746",
           "times_asked": 1
@@ -911,7 +911,7 @@
         },
         {
           "question": "Where do you see yourself in 5 years?",
-          "answer": "In five years, I see myself as a mid-level Data Analyst or Software Engineer who's known for combining technical expertise with business understanding. I'm excited to have gained significant experience and skills by that time, and I envision myself leading data analysis projects independently from requirements to insights to presentation. I also see myself mentoring junior analysts or developers, bridging the gap between technical teams and business stakeholders, and potentially specializing in an industry I'm passionate about, like education technology given my COIL project experience.",
+          "answer": "In five years, I see myself as a mid-level Data Analyst who's known for combining technical expertise with business understanding and leveraging AI for data insights. I recently completed an AI Data Analyst workshop which showed me the exciting possibilities in this field. I envision myself leading data analysis projects independently from requirements to insights to presentation, using both traditional and AI-powered tools. I also see myself mentoring junior analysts, bridging the gap between technical teams and business stakeholders, and potentially specializing in an industry I'm passionate about, like education technology given my COIL project experience.",
           "category": "personal",
           "added_date": "2025-10-04T20:20:54.466575",
           "times_asked": 2
@@ -1749,7 +1749,7 @@
         },
         {
           "question": "What's your backup plan if a data analyst role doesn't work out?",
-          "answer": "I'm committed to data analyst as my primary career goal because it aligns with my interests (data, analysis, problem-solving) and strengths (database management, SQL, analytical thinking). But I'm also realistic that career paths aren't always linear. My backup plan is software engineering, which leverages my current skills more directly. I have stronger software development experience right now (capstone project, Yellow Forms, COIL projects) than data analytics experience. Software engineering would be a natural fit where I could add immediate value while building toward data analyst transition. Long-term, these paths can converge - many software engineers transition to data engineering or analytics engineering roles. What I wouldn't do: I wouldn't pursue careers completely unrelated to technology. I'm committed to the tech industry. My education, certifications, projects, and leadership have all built toward tech careers. Why I'm confident in data analyst path: First, I have strong database fundamentals (1.00 in Information Management, 1.25 in Advanced Database Management). Second, I'm analytical - my capstone's decision support system showed I can analyze complex rules and translate them into data-driven logic. Third, I'm actively learning the tools (Python, pandas, data visualization). Fourth, my academic track record shows I learn new domains quickly and excel. If I enter as software engineer and perform well, I'd look for opportunities to work on data-heavy projects, learn analytics tools on the job, and transition internally. Either path - data analyst or software engineer - aligns with my skills and goals.",
+          "answer": "I'm committed to data analyst as my primary career goal because it aligns with my interests (data, analysis, problem-solving) and strengths (database management, SQL, analytical thinking). I recently completed an AI Data Analyst workshop which reinforced this passion and gave me practical experience with AI-powered data tools. I'm confident in this path because: First, I have strong database fundamentals (1.00 in Information Management, 1.25 in Advanced Database Management). Second, I'm analytical - my capstone's decision support system showed I can analyze complex rules and translate them into data-driven logic. Third, I'm actively learning the tools (Python, pandas, data visualization, AI tools). Fourth, my academic track record shows I learn new domains quickly and excel. If I absolutely needed a contingency, I could leverage my web development skills temporarily while continuing to build toward data analyst roles through certifications and projects. But I'm fully committed to the data analyst path - it's not just a career choice, it's where my passion, skills, and the AI workshop experience all align.",
           "category": "general",
           "added_date": "2025-10-04T21:43:59.494915",
           "times_asked": 1
@@ -1856,7 +1856,7 @@
       "introduction": [
         {
           "question": "Walk me through your resume",
-          "answer": "I'm Lovely Pearl Alan, a final-year BSIT student at St. Paul University Philippines, graduating June 2026. I'm majoring in Web and App Development with a consistent President's Lister status - most grades between 1.00-1.75, including perfect 1.00s in Object Oriented Programming and Information Management. My technical foundation includes Cisco certifications in C++ and JavaScript (both intermediate level), extensive work with Laravel, PHP, MySQL, and full-stack web development. I've built real applications - my capstone is a Good Moral Application and Monitoring System that digitized our university's certificate request process, built entirely with Laravel and MySQL. I also led an international COIL project with Brazil creating a multilingual learning platform. Beyond technical work, I have four years of progressive leadership experience - currently serving as President of Junior Philippine Computer Society with 100+ members, and Executive Secretary of our university's Student Government. I'm seeking an entry-level Data Analyst or Software Engineer role where I can apply my technical skills and continue learning from experienced professionals.",
+          "answer": "I'm Lovely Pearl Alan, a final-year BSIT student at St. Paul University Philippines, graduating June 2026. I'm majoring in Web and App Development with a consistent President's Lister status - most grades between 1.00-1.75, including perfect 1.00s in Object Oriented Programming and Information Management. My technical foundation includes Cisco certifications in C++ and JavaScript (both intermediate level), extensive work with Laravel, PHP, MySQL, and full-stack web development. I recently completed an AI Data Analyst workshop which gave me hands-on experience with AI-powered data analysis tools - this reinforced my passion for data analytics as a career path. I've built real applications - my capstone is a Good Moral Application and Monitoring System that digitized our university's certificate request process, built entirely with Laravel and MySQL. I also led an international COIL project with Brazil creating a multilingual learning platform. Beyond technical work, I have four years of progressive leadership experience - currently serving as President of Junior Philippine Computer Society with 100+ members, and Executive Secretary of our university's Student Government. I'm seeking an entry-level Data Analyst role where I can apply my technical skills, leverage AI tools, and continue learning from experienced professionals.",
           "category": "introduction",
           "added_date": "2025-10-12T14:39:39.439675",
           "times_asked": 0
@@ -3042,7 +3042,7 @@
       "career_goals_5year": [
         {
           "question": "What are your career goals for the next 5 years?",
-          "answer": "In the next 5 years, I aim to establish myself as a skilled Data Analyst or Software Engineer. Short-term, I want to graduate with honors in June 2026 and land my first professional role where I can apply my web development and data analysis skills. In years 2-3, I want to deepen my expertise in data analytics, master tools like Python for data science, SQL for complex queries, and data visualization platforms. I also want to earn relevant certifications in data analysis or cloud technologies. By year 4-5, I hope to be leading small projects or mentoring junior team members. I'm also open to specializing in AI/ML if opportunities arise. Ultimately, I want to become a go-to expert in data-driven decision making while continuing to grow technically and professionally!",
+          "answer": "In the next 5 years, I aim to establish myself as a skilled Data Analyst. Short-term, I want to graduate with honors in June 2026 and land my first professional role where I can apply my data analysis skills. I recently completed an AI Data Analyst workshop which gave me hands-on experience with AI-powered data tools and reinforced my passion for this field. In years 2-3, I want to deepen my expertise in data analytics, master tools like Python for data science, SQL for complex queries, and data visualization platforms like Power BI and Tableau. I also want to earn relevant certifications in data analysis, AI/ML, or cloud technologies. By year 4-5, I hope to be leading data analysis projects or mentoring junior analysts. Ultimately, I want to become a go-to expert in AI-powered data-driven decision making while continuing to grow technically and professionally!",
           "category": "career_goals_5year",
           "language": "English",
           "has_translation": true,
@@ -3062,7 +3062,7 @@
         },
         {
           "question": "What are your career goals for the next 5 years?",
-          "answer": "In the next 5 years, I aim to establish myself as a skilled Data Analyst or Software Engineer. Short-term, I want to graduate with honors in June 2026 and land my first professional role where I can apply my web development and data analysis skills. In years 2-3, I want to deepen my expertise in data analytics, master tools like Python for data science, SQL for complex queries, and data visualization platforms. I also want to earn relevant certifications in data analysis or cloud technologies. By year 4-5, I hope to be leading small projects or mentoring junior team members. I'm also open to specializing in AI/ML if opportunities arise. Ultimately, I want to become a go-to expert in data-driven decision making while continuing to grow technically and professionally!",
+          "answer": "In the next 5 years, I aim to establish myself as a skilled Data Analyst. Short-term, I want to graduate with honors in June 2026 and land my first professional role where I can apply my data analysis skills. I recently completed an AI Data Analyst workshop which gave me hands-on experience with AI-powered data tools and reinforced my passion for this field. In years 2-3, I want to deepen my expertise in data analytics, master tools like Python for data science, SQL for complex queries, and data visualization platforms like Power BI and Tableau. I also want to earn relevant certifications in data analysis, AI/ML, or cloud technologies. By year 4-5, I hope to be leading data analysis projects or mentoring junior analysts. Ultimately, I want to become a go-to expert in AI-powered data-driven decision making while continuing to grow technically and professionally!",
           "category": "career_goals_5year",
           "language": "English",
           "has_translation": true,
