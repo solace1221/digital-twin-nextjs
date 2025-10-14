@@ -452,7 +452,7 @@ export default function WelcomeToDigitalTwin() {
                   className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-10 py-6 text-lg font-bold rounded-full shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:scale-105 flex items-center gap-3"
                 >
                   <Mic className="w-6 h-6" />
-                  Voice AI (Coming Soon)
+                  Talk with Pearl.AI
                 </Button>
               </Link>
             </div>
