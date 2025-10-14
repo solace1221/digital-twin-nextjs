@@ -5,10 +5,10 @@ import {
   OpenAIRealtimeWebRTC,
 } from '@openai/agents/realtime';
 
-import { audioFormatForCodec, applyCodecPreferences } from '../lib/codecUtils';
-import { useEvent } from '../contexts/EventContext';
+import { audioFormatForCodec, applyCodecPreferences } from '@/app/lib/codecUtils';
+import { useEvent } from '@/app/contexts/EventContext';
 import { useHandleSessionHistory } from './useHandleSessionHistory';
-import { SessionStatus } from '../types';
+import { SessionStatus } from '@/app/types';
 
 export interface RealtimeSessionCallbacks {
   onConnectionChange?: (status: SessionStatus) => void;
