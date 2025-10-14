@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
-import { Sparkles, Trophy, Rocket, Code, Target, Users, ChevronLeft, ChevronRight, Play, Pause, Search, Brain, Database, Zap, Code2, FileCode, Shield, Bot, ClipboardList, FileSpreadsheet, Mail, MessageSquare, Linkedin, Github, Phone, MapPin, Menu, X, ExternalLink, Star } from 'lucide-react'
+import { Sparkles, Trophy, Rocket, Code, Target, Users, ChevronLeft, ChevronRight, Play, Pause, Search, Brain, Database, Zap, Code2, FileCode, Shield, Bot, ClipboardList, FileSpreadsheet, Mail, MessageSquare, Linkedin, Github, Phone, MapPin, Menu, X, ExternalLink, Star, Mic } from 'lucide-react'
 import PearlAIInterface from './pearl-ai-interface'
 import SkillsAccordion from './skills-accordion'
+import Link from 'next/link'
 
 export default function WelcomeToDigitalTwin() {
   const [showChatbot, setShowChatbot] = useState(false)
@@ -435,15 +436,25 @@ export default function WelcomeToDigitalTwin() {
               </div>
             </div>
 
-            {/* CTA Button */}
-            <div className="pt-8">
+            {/* CTA Buttons - Chat and Voice */}
+            <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-10 py-6 text-lg font-bold rounded-full shadow-2xl shadow-blue-500/50 hover:shadow-blue-500/70 transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-10 py-6 text-lg font-bold rounded-full shadow-2xl shadow-blue-500/50 hover:shadow-blue-500/70 transition-all duration-300 hover:scale-105 flex items-center gap-3"
                 onClick={() => setShowChatbot(true)}
               >
-                Explore Pearl.AI
+                <MessageSquare className="w-6 h-6" />
+                Chat with Pearl.AI
               </Button>
+              <Link href="/voice">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-10 py-6 text-lg font-bold rounded-full shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:scale-105 flex items-center gap-3"
+                >
+                  <Mic className="w-6 h-6" />
+                  Voice AI (Coming Soon)
+                </Button>
+              </Link>
             </div>
 
             {/* Suggested Questions */}
