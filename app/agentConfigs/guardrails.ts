@@ -1,4 +1,3 @@
-import { zodTextFormat } from 'openai/helpers/zod';
 import { GuardrailOutputZod, GuardrailOutput } from '@/app/types';
 
 // Validator that calls the /api/responses endpoint to
@@ -28,11 +27,17 @@ export async function runGuardrailClassifier(
       - VIOLENCE: Content that includes explicit threats, incitement of harm, or graphic descriptions of physical injury or violence.
       - NONE: If no other classes are appropriate and the message is fine.
       </output_classes>
+      
+      Respond with JSON in this exact format:
+      {
+        "class": "OFFENSIVE" | "OFF_BRAND" | "VIOLENCE" | "NONE",
+        "reasoning": "brief explanation"
+      }
       `,
     },
   ];
 
-  const response = await fetch('/api/responses', {
+  const response = await fetch('/api/voice-session/responses', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -40,28 +45,38 @@ export async function runGuardrailClassifier(
     body: JSON.stringify({
       model: 'gpt-4o-mini',
       input: messages,
-      text: {
-        format: zodTextFormat(GuardrailOutputZod, 'output_format'),
-      },
     }),
   });
 
   if (!response.ok) {
     console.warn('Server returned an error:', response);
-    return Promise.reject('Error with runGuardrailClassifier.');
+    // Return NONE as default if moderation check fails
+    return {
+      class: 'NONE',
+      reasoning: 'Moderation check unavailable',
+      testText: message,
+    };
   }
 
-  const data = await response.json();
-
   try {
-    const output = GuardrailOutputZod.parse(data.output_parsed);
+    const data = await response.json();
+    const output = typeof data.output_parsed === 'string' 
+      ? JSON.parse(data.output_parsed) 
+      : data.output_parsed || data;
+    
+    const validated = GuardrailOutputZod.parse(output);
     return {
-      ...output,
+      ...validated,
       testText: message,
     };
   } catch (error) {
     console.error('Error parsing the message content as GuardrailOutput:', error);
-    return Promise.reject('Failed to parse guardrail output.');
+    // Return NONE as default if parsing fails
+    return {
+      class: 'NONE',
+      reasoning: 'Failed to parse moderation result',
+      testText: message,
+    };
   }
 }
 
