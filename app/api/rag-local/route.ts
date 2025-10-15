@@ -10,7 +10,7 @@ const localRAGSystem = new LocalRAGSystem();
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { query, options = {} } = body;
+    const { query, options = {}, conversationHistory = [], generateFollowUp = false } = body;
 
     if (!query || typeof query !== 'string') {
       return NextResponse.json(
@@ -20,6 +20,9 @@ export async function POST(request: NextRequest) {
     }
 
     console.log(`Processing Local RAG query: ${query}`);
+    if (generateFollowUp) {
+      console.log('[RAG API] Follow-up question generation requested');
+    }
 
     // Try to initialize RAG system if not already done
     let ragSystemReady = false;
@@ -49,14 +52,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Execute the query
-    const result = await localRAGSystem.queryWithResponse(query, options);
+    // Execute the query with follow-up generation option
+    const result = await localRAGSystem.queryWithResponse(query, {
+      ...options,
+      generateFollowUp,
+      conversationHistory
+    });
 
     return NextResponse.json({
       success: true,
       query,
       searchResults: result.searchResults,
       response: result.response,
+      followUpQuestion: result.followUpQuestion,
       usageStats: result.usageStats,
       provider: 'local',
       timestamp: new Date().toISOString()

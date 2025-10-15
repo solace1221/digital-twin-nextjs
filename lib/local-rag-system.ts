@@ -1,5 +1,6 @@
 // Local RAG System (fallback when Upstash is not available)
 import { GroqLLMClient } from './groq-client';
+import { FollowUpQuestionGenerator } from './follow-up-generator';
 import { EmbeddingService, EmbeddingService as ES } from './embedding-service';
 import fs from 'fs/promises';
 import path from 'path';
@@ -15,6 +16,8 @@ export interface LocalRAGOptions {
   temperature?: number;
   maxTokens?: number;
   similarityThreshold?: number;
+  generateFollowUp?: boolean;
+  conversationHistory?: Array<{ role: string; content: string }>;
 }
 
 interface StoredEmbedding {
@@ -26,12 +29,16 @@ interface StoredEmbedding {
 
 export class LocalRAGSystem {
   private groq: GroqLLMClient;
+  private followUpGenerator: FollowUpQuestionGenerator;
   private embeddingService: EmbeddingService;
   private isInitialized: boolean = false;
   private embeddings: StoredEmbedding[] = [];
+  private lastQuestion: string = '';
+  private lastResponse: string = '';
 
   constructor() {
     this.groq = new GroqLLMClient();
+    this.followUpGenerator = new FollowUpQuestionGenerator();
     this.embeddingService = new EmbeddingService();
   }
 
@@ -249,17 +256,87 @@ Answer:`;
   async queryWithResponse(query: string, options: LocalRAGOptions = {}): Promise<{
     searchResults: LocalSearchResult[];
     response: string;
+    followUpQuestion?: string;
     usageStats?: any;
   }> {
     const searchResults = await this.search(query, options);
     const response = await this.generateResponse(query, searchResults, options);
+    
+    // Store for follow-up generation
+    this.lastQuestion = query;
+    this.lastResponse = response;
+    
+    let followUpQuestion: string | undefined;
+    
+    // Generate follow-up question if requested
+    if (options.generateFollowUp) {
+      try {
+        const followUpResult = await this.followUpGenerator.generateFollowUp(
+          response,
+          query,
+          {
+            conversationHistory: options.conversationHistory,
+            depth: 'moderate',
+            temperature: 0.8
+          }
+        );
+        followUpQuestion = followUpResult.followUpQuestion;
+        console.log('[Local RAG System] Generated follow-up question');
+      } catch (error) {
+        console.error('[Local RAG System] Failed to generate follow-up:', error);
+        // Don't fail the whole request if follow-up generation fails
+      }
+    }
+    
     const usageStats = this.groq.getUsageStats();
 
     return {
       searchResults,
       response,
+      followUpQuestion,
       usageStats
     };
+  }
+
+  /**
+   * Generate a contextual follow-up question based on user's last response
+   */
+  async generateFollowUpQuestion(
+    userMessage: string,
+    options: {
+      conversationHistory?: Array<{ role: string; content: string }>;
+      scenario?: 'achievement' | 'challenge' | 'leadership' | 'technical' | 'career';
+    } = {}
+  ): Promise<string> {
+    try {
+      if (options.scenario) {
+        return await this.followUpGenerator.generateInterviewFollowUp(
+          options.scenario,
+          userMessage,
+          this.lastQuestion
+        );
+      } else {
+        const result = await this.followUpGenerator.generateFollowUp(
+          userMessage,
+          this.lastQuestion,
+          {
+            conversationHistory: options.conversationHistory,
+            depth: 'moderate'
+          }
+        );
+        return result.followUpQuestion;
+      }
+    } catch (error) {
+      console.error('[Local RAG System] Error generating follow-up:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Generate an initial follow-up question for a topic
+   */
+  async generateInitialFollowUp(topic: string): Promise<string> {
+    return await this.followUpGenerator.generateInitialFollowUp(topic);
   }
 
   async getSystemInfo(): Promise<{
