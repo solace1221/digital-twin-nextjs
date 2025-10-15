@@ -15,6 +15,8 @@ interface Message {
   timestamp: Date
   typing?: boolean
   followUpQuestion?: string
+  filipinoTranslation?: string
+  showingTranslation?: boolean
 }
 
 interface PearlAIInterfaceProps {
@@ -34,6 +36,7 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
   const [currentMessage, setCurrentMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isTyping, setIsTyping] = useState(false)
+  const [translatingMessageId, setTranslatingMessageId] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const hasAutoSent = useRef(false)
 
@@ -71,6 +74,56 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
     "What projects have you worked on?",
     "What are your career goals?"
   ]
+
+  const toggleFilipinoTranslation = async (messageId: string) => {
+    const message = messages.find(m => m.id === messageId)
+    if (!message) return
+
+    // If already showing translation, toggle back to English
+    if (message.showingTranslation) {
+      setMessages(prev => prev.map(m => 
+        m.id === messageId ? { ...m, showingTranslation: false } : m
+      ))
+      return
+    }
+
+    // If translation already exists, just show it
+    if (message.filipinoTranslation) {
+      setMessages(prev => prev.map(m => 
+        m.id === messageId ? { ...m, showingTranslation: true } : m
+      ))
+      return
+    }
+
+    // Generate translation
+    setTranslatingMessageId(messageId)
+    try {
+      const response = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          text: message.content,
+          targetLanguage: 'filipino'
+        })
+      })
+
+      const data = await response.json()
+      
+      if (data.success && data.translation) {
+        setMessages(prev => prev.map(m => 
+          m.id === messageId ? { 
+            ...m, 
+            filipinoTranslation: data.translation,
+            showingTranslation: true 
+          } : m
+        ))
+      }
+    } catch (error) {
+      console.error('Translation error:', error)
+    } finally {
+      setTranslatingMessageId(null)
+    }
+  }
 
   const sendMessage = async (messageContent?: string) => {
     const content = messageContent || currentMessage.trim()
@@ -300,7 +353,9 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
                                 ),
                               }}
                             >
-                              {message.content}
+                              {message.showingTranslation && message.filipinoTranslation 
+                                ? message.filipinoTranslation 
+                                : message.content}
                             </ReactMarkdown>
                           </div>
                           {message.sender === 'pearl' && message.followUpQuestion && (
@@ -313,6 +368,41 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                               </svg>
+                            </Button>
+                          )}
+                          {message.sender === 'pearl' && !message.showingTranslation && (
+                            <Button
+                              onClick={() => toggleFilipinoTranslation(message.id)}
+                              disabled={translatingMessageId === message.id}
+                              className="mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-lg shadow-blue-500/30"
+                            >
+                              {translatingMessageId === message.id ? (
+                                <>
+                                  <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                  </svg>
+                                  <span>Translating...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                                  </svg>
+                                  <span>View Filipino Translation</span>
+                                </>
+                              )}
+                            </Button>
+                          )}
+                          {message.sender === 'pearl' && message.showingTranslation && message.filipinoTranslation && (
+                            <Button
+                              onClick={() => toggleFilipinoTranslation(message.id)}
+                              className="mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-lg shadow-blue-500/30"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                              </svg>
+                              <span>View English</span>
                             </Button>
                           )}
                         </div>
