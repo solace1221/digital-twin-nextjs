@@ -14,6 +14,7 @@ interface Message {
   sender: 'user' | 'pearl'
   timestamp: Date
   typing?: boolean
+  followUpQuestion?: string
 }
 
 interface PearlAIInterfaceProps {
@@ -88,10 +89,20 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
     setIsTyping(true)
 
     try {
+      // Get last 6 messages for conversation history
+      const conversationHistory = messages.slice(-6).map(m => ({
+        role: m.sender === 'user' ? 'user' : 'assistant',
+        content: m.content
+      }))
+
       const response = await fetch('/api/rag', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: content })
+        body: JSON.stringify({ 
+          query: content,
+          generateFollowUp: true,
+          conversationHistory
+        })
       })
 
       const data = await response.json()
@@ -123,7 +134,8 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
           id: (Date.now() + 1).toString(),
           content: data.response || "I'm having trouble accessing my knowledge base right now. Please try again.",
           sender: 'pearl',
-          timestamp: new Date()
+          timestamp: new Date(),
+          followUpQuestion: data.followUpQuestion
         }
 
         setMessages(prev => [...prev, aiMessage])
@@ -291,6 +303,18 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
                               {message.content}
                             </ReactMarkdown>
                           </div>
+                          {message.sender === 'pearl' && message.followUpQuestion && (
+                            <Button
+                              onClick={() => sendMessage("tell me more")}
+                              disabled={isLoading}
+                              className="mt-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-lg shadow-pink-500/30"
+                            >
+                              <span>tell me more</span>
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                              </svg>
+                            </Button>
+                          )}
                         </div>
                       </div>
                     ))}
