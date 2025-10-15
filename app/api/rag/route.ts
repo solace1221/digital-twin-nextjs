@@ -7,7 +7,7 @@ const ragSystem = new UpstashRAGSystem();
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { query, options = {} } = body;
+    const { query, options = {}, generateFollowUp = false, conversationHistory = [] } = body;
 
     if (!query || typeof query !== 'string') {
       console.error('Invalid query parameter:', { query, type: typeof query });
@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
     }
 
     console.log(`[RAG API] Processing query: "${query}"`);
+    console.log('[RAG API] Options:', { generateFollowUp, historyLength: conversationHistory.length });
     console.log('[RAG API] Environment check:', {
       hasUpstashUrl: !!process.env.UPSTASH_VECTOR_REST_URL,
       hasUpstashToken: !!process.env.UPSTASH_VECTOR_REST_TOKEN,
@@ -65,10 +66,16 @@ export async function POST(request: NextRequest) {
 
     // Execute the query
     console.log('[RAG API] Executing query...');
-    const result = await ragSystem.queryWithResponse(query, options);
+    const queryOptions = {
+      ...options,
+      generateFollowUp,
+      conversationHistory
+    };
+    const result = await ragSystem.queryWithResponse(query, queryOptions);
     console.log('[RAG API] Query executed successfully:', {
       resultsCount: result.searchResults?.length || 0,
-      hasResponse: !!result.response
+      hasResponse: !!result.response,
+      hasFollowUp: !!result.followUpQuestion
     });
 
     return NextResponse.json({
@@ -76,6 +83,7 @@ export async function POST(request: NextRequest) {
       query,
       searchResults: result.searchResults,
       response: result.response,
+      followUpQuestion: result.followUpQuestion,
       usageStats: result.usageStats,
       timestamp: new Date().toISOString()
     });
