@@ -305,7 +305,7 @@ export default function PearlAIInterface({ onClose, initialQuestion }: PearlAIIn
                           </div>
                           {message.sender === 'pearl' && message.followUpQuestion && (
                             <Button
-                              onClick={() => sendMessage("tell me more")}
+                              onClick={() => sendMessage(message.followUpQuestion)}
                               disabled={isLoading}
                               className="mt-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-lg shadow-pink-500/30"
                             >
