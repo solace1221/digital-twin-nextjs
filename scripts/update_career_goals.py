@@ -1,6 +1,6 @@
 """
-Update career goals to focus on Data Analyst only
-Add AI Data Analyst workshop information
+Update career goals to focus on AI Data Analyst
+Add emphasis on AI and machine learning in data analysis
 Remove Software Engineer as alternative career path
 """
 
@@ -18,17 +18,21 @@ def save_digital_twin_data(data):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 def update_career_goals():
-    """Update career goals to Data Analyst only with AI workshop mention"""
+    """Update career goals to AI Data Analyst with emphasis on AI/ML capabilities"""
     print("Loading digital twin data...")
     data = load_digital_twin_data()
     
     updates_made = 0
     
-    # Update Career Goals content chunk
-    for chunk in data.get('knowledge_base', {}).get('content_chunks', []):
+    # Update Career Goals content chunk (check both locations)
+    content_chunks = data.get('knowledge_base', {}).get('content_chunks', [])
+    if not content_chunks:
+        content_chunks = data.get('content_chunks', [])
+    
+    for chunk in content_chunks:
         if chunk.get('id') == 'career_goals':
             old_content = chunk['content']
-            chunk['content'] = "My primary career goal is to become a Data Analyst, where I can apply my technical skills and analytical mindset to solve complex problems through data. I recently completed an AI Data Analyst workshop which reinforced my passion for this career path and gave me hands-on experience with AI-powered data analysis tools. I want to work on projects that have real-world impact, continue learning cutting-edge data technologies, and eventually grow into a senior data analyst or data science role. I'm passionate about leveraging data and AI to drive informed decision-making in organizations."
+            chunk['content'] = "My primary career goal is to become an AI Data Analyst, where I can apply my technical skills and analytical mindset to solve complex problems through data-driven insights powered by artificial intelligence. I recently completed an AI Data Analyst workshop which reinforced my passion for this career path and gave me hands-on experience with AI-powered data analysis tools, machine learning workflows, and intelligent automation for data processing. Short-term, I want to secure an internship or entry-level position in AI-driven data analytics where I can gain practical experience working with real-world datasets, AI models, and business intelligence tools. I'm eager to learn from experienced data professionals and apply my technical foundation to meaningful projects. Long-term, I aspire to grow into a senior AI data analyst or AI/ML specialist role, leveraging advanced analytics, predictive modeling, and AI technologies to drive strategic decision-making in organizations. I'm passionate about the intersection of data science and artificial intelligence, and I believe my strong academic foundation combined with practical AI workshop experience will help me make valuable contributions to data-driven teams."
             print(f"✓ Updated Career Goals content chunk")
             print(f"  Old: {old_content[:100]}...")
             print(f"  New: {chunk['content'][:100]}...")
@@ -37,7 +41,7 @@ def update_career_goals():
     # Update elevator pitch
     if 'personal' in data:
         old_pitch = data['personal']['elevator_pitch']
-        data['personal']['elevator_pitch'] = "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I recently completed an AI Data Analyst workshop and aim to grow into a Data Analyst role where I can apply my skills in data-driven decision-making using AI-powered tools."
+        data['personal']['elevator_pitch'] = "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I recently completed an AI Data Analyst workshop and aim to become an AI Data Analyst where I can leverage artificial intelligence and advanced analytics to drive data-driven decision-making and create intelligent solutions for real-world business challenges."
         print(f"\n✓ Updated elevator pitch")
         updates_made += 1
     
@@ -54,13 +58,13 @@ def update_career_goals():
                         
                         # English version
                         if qa.get('language') == 'English' or 'language' not in qa:
-                            qa['answer'] = "In the next 5 years, I aim to establish myself as a skilled Data Analyst. Short-term, I want to graduate with honors in June 2026 and land my first professional role where I can apply my data analysis skills. I recently completed an AI Data Analyst workshop which gave me hands-on experience with AI-powered data tools and reinforced my passion for this field. In years 2-3, I want to deepen my expertise in data analytics, master tools like Python for data science, SQL for complex queries, and data visualization platforms like Power BI and Tableau. I also want to earn relevant certifications in data analysis, AI/ML, or cloud technologies. By year 4-5, I hope to be leading data analysis projects or mentoring junior analysts. Ultimately, I want to become a go-to expert in AI-powered data-driven decision making while continuing to grow technically and professionally!"
+                            qa['answer'] = "In the next 5 years, I aim to establish myself as a skilled AI Data Analyst who can leverage artificial intelligence and machine learning to extract meaningful insights from data. Short-term, I want to graduate with honors in June 2026 and land my first professional role where I can apply my AI-driven data analysis skills. I recently completed an AI Data Analyst workshop which gave me hands-on experience with AI-powered data tools, machine learning workflows, and intelligent automation - this reinforced my passion for combining AI with analytics. In years 2-3, I want to deepen my expertise in AI/ML for data analytics, master tools like Python for data science and machine learning, SQL for complex queries, cloud-based AI platforms (Azure ML, AWS SageMaker), and advanced data visualization tools like Power BI and Tableau. I also want to earn relevant certifications in AI/ML, data science, and cloud technologies. By year 4-5, I hope to be leading AI-powered data analysis projects, building predictive models, and mentoring junior analysts. Ultimately, I want to become a go-to expert in AI-driven analytics and intelligent decision-making systems while continuing to grow technically and stay current with emerging AI technologies!"
                             print(f"\n✓ Updated career goals Q&A (English): {qa['question'][:50]}...")
                             updates_made += 1
                         
                         # Tagalog version
                         elif qa.get('language') == 'Tagalog':
-                            qa['answer'] = "In the next 5 years, gusto kong maging skilled Data Analyst. Short-term, gusto kong mag-graduate with honors sa June 2026 at makakuha ng first professional role kung saan pwede kong i-apply ang data analysis skills ko. Recently, nag-complete ako ng AI Data Analyst workshop na nag-bigay sa akin ng hands-on experience with AI-powered data tools at nag-reinforce ng passion ko for this field. Sa years 2-3, gusto kong palalimin ang expertise ko sa data analytics, master ang tools like Python for data science, SQL for complex queries, at data visualization platforms like Power BI at Tableau. Gusto ko rin mag-earn ng relevant certifications sa data analysis, AI/ML, o cloud technologies. By year 4-5, sana nag-lead na ako ng data analysis projects o nag-mentor ng junior analysts. Ultimately, gusto kong maging go-to expert sa AI-powered data-driven decision making habang patuloy na lumalaki technically at professionally!"
+                            qa['answer'] = "In the next 5 years, gusto kong maging skilled AI Data Analyst na makakapag-leverage ng artificial intelligence at machine learning para makakuha ng meaningful insights from data. Short-term, gusto kong mag-graduate with honors sa June 2026 at makakuha ng first professional role kung saan pwede kong i-apply ang AI-driven data analysis skills ko. Recently, nag-complete ako ng AI Data Analyst workshop na nag-bigay sa akin ng hands-on experience with AI-powered data tools, machine learning workflows, at intelligent automation - nag-reinforce ito ng passion ko for combining AI with analytics. Sa years 2-3, gusto kong palalimin ang expertise ko sa AI/ML for data analytics, master ang tools like Python for data science and machine learning, SQL for complex queries, cloud-based AI platforms (Azure ML, AWS SageMaker), at advanced data visualization tools like Power BI at Tableau. Gusto ko rin mag-earn ng relevant certifications sa AI/ML, data science, at cloud technologies. By year 4-5, sana nag-lead na ako ng AI-powered data analysis projects, building predictive models, at nag-mentor ng junior analysts. Ultimately, gusto kong maging go-to expert sa AI-driven analytics at intelligent decision-making systems habang patuloy na lumalaki technically at updated sa emerging AI technologies!"
                             print(f"✓ Updated career goals Q&A (Tagalog): {qa['question'][:50]}...")
                             updates_made += 1
                 
@@ -68,9 +72,10 @@ def update_career_goals():
                 if 'what are your career goals' in question_lower or 'ano ang career goals' in question_lower:
                     if 'Software Engineer' in qa.get('answer', '') and category_name != 'career_goals_5year':
                         old_answer = qa['answer']
-                        # Replace Software Engineer mentions with Data Analyst focus
-                        qa['answer'] = qa['answer'].replace('Data Analyst or Software Engineer', 'Data Analyst')
-                        qa['answer'] = qa['answer'].replace('Software Engineer or Data Analyst', 'Data Analyst')
+                        # Replace Software Engineer mentions with AI Data Analyst focus
+                        qa['answer'] = qa['answer'].replace('Data Analyst or Software Engineer', 'AI Data Analyst')
+                        qa['answer'] = qa['answer'].replace('Software Engineer or Data Analyst', 'AI Data Analyst')
+                        qa['answer'] = qa['answer'].replace('Data Analyst', 'AI Data Analyst')
                         if old_answer != qa['answer']:
                             print(f"\n✓ Updated general career goal: {qa['question'][:50]}...")
                             updates_made += 1
@@ -80,7 +85,7 @@ def update_career_goals():
     print(f"Total updates made: {updates_made}")
     print("Saving updated data...")
     save_digital_twin_data(data)
-    print("✅ Successfully updated career goals to focus on Data Analyst with AI workshop!")
+    print("✅ Successfully updated career goals to focus on AI Data Analyst with AI/ML emphasis!")
 
 if __name__ == "__main__":
     update_career_goals()

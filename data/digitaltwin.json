@@ -6,7 +6,7 @@
     "title": "BSIT Student – Web & App Development | Aspiring Data Analyst",
     "location": "Tuguegarao City, Cagayan, Philippines",
     "summary": "Motivated and detail-oriented BSIT student majoring in Web and App Development at St. Paul University Philippines. Strong foundations in database management, programming, and front-end development. Recognized as a President's Lister with proven leadership experience through active involvement in student organizations. Passionate about leveraging data and technology to solve real-world challenges.",
-    "elevator_pitch": "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I recently completed an AI Data Analyst workshop and aim to grow into a Data Analyst role where I can apply my skills in data-driven decision-making using AI-powered tools.",
+    "elevator_pitch": "I am Lovely Alan, a BSIT student specializing in Web and App Development, with experience in programming, database management, and leadership. As a President's Lister and student leader, I combine technical expertise with organizational skills to contribute meaningfully in both academic and professional settings. I recently completed an AI Data Analyst workshop and aim to become an AI Data Analyst where I can leverage artificial intelligence and advanced analytics to drive data-driven decision-making and create intelligent solutions for real-world business challenges.",
     "contact": {
       "email": "lovelyalan@spup.edu.ph",
       "linkedin": "https://www.linkedin.com/in/lovely-pearl-alan-62bbb2311/",
@@ -479,12 +479,14 @@
     }
   ],
   "career_goals": {
-    "short_term": "Secure an internship or entry-level role in data analytics",
-    "long_term": "Pursue a career as a Data Analyst specializing in AI-powered data analysis and insights",
+    "short_term": "Secure an internship or entry-level role in AI-driven data analytics and intelligent automation",
+    "long_term": "Pursue a career as an AI Data Analyst specializing in machine learning, predictive modeling, and AI-powered business intelligence",
     "learning_focus": [
-      "Data Analytics",
-      "AI Data Analysis Tools",
-      "Database Optimization"
+      "AI & Machine Learning for Data Analytics",
+      "Python for Data Science & ML",
+      "Predictive Modeling & AI-Powered Insights",
+      "Cloud-Based AI Platforms (Azure ML, AWS SageMaker)",
+      "Advanced Business Intelligence Tools (Power BI, Tableau)"
     ],
     "industries_interested": [
       "IT Services",
@@ -842,7 +844,7 @@
       "id": "career_goals",
       "title": "Career Goals",
       "type": "career",
-      "content": "My primary career goal is to become a Data Analyst, where I can apply my technical skills and analytical mindset to solve complex problems through data. I recently completed an AI Data Analyst workshop which reinforced my passion for this career path and gave me hands-on experience with AI-powered data analysis tools. Short-term, I want to secure an internship in data analytics where I can gain hands-on experience and build my professional network. I want to learn from experienced professionals and apply my technical skills in real-world scenarios. Long-term, I aspire to grow into a senior data analyst or data science role, using data and AI to drive informed decision-making in organizations. I'm passionate about leveraging data and AI technology to solve real-world challenges, and I believe my strong academic foundation combined with practical experience from the AI workshop will help me make meaningful contributions to any team I join.",
+      "content": "My primary career goal is to become an AI Data Analyst, where I can apply my technical skills and analytical mindset to solve complex problems through data-driven insights powered by artificial intelligence. I recently completed an AI Data Analyst workshop which reinforced my passion for this career path and gave me hands-on experience with AI-powered data analysis tools, machine learning workflows, and intelligent automation for data processing. Short-term, I want to secure an internship or entry-level position in AI-driven data analytics where I can gain practical experience working with real-world datasets, AI models, and business intelligence tools. I'm eager to learn from experienced data professionals and apply my technical foundation to meaningful projects. Long-term, I aspire to grow into a senior AI data analyst or AI/ML specialist role, leveraging advanced analytics, predictive modeling, and AI technologies to drive strategic decision-making in organizations. I'm passionate about the intersection of data science and artificial intelligence, and I believe my strong academic foundation combined with practical AI workshop experience will help me make valuable contributions to data-driven teams.",
       "metadata": {
         "category": "career",
         "tags": [
